@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Merienda+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+
+// USAR ESTO PARA EL REGISTRO DEL FORM
+// function emailValidator(string){
+//     function test(email){
+//         if(email.value.length ==0){
+//             document.getElementById("mailWrong").innerHTML = "Write your email";
+//         }else{
+//             document.getElementById("mailWrong").innerHTML = "";
+//         }        
+//     }
+// }
+    </script>
+</head>
+<body>
+    <section class="wrapper" wrapper>
+
+        <!---------------------------------------------------- LOGO ----------------------->
+        <div class="logo">Logo</div>
+
+        <!---------------------------------------------------- TITLE ---------------------->
+        <div class="title">Send password</div>
+
+        <!---------------------------------------------------- MAIN ----------------------->
+        <main class="main">
+            
+                <ul id="hello">
+                    <li>Hello</li>
+                    <li>again!</li>
+                </ul>
+                
+                <ul id="direction">
+                    <li>Madrid / Spain</li>
+                    <li>ad. Marqués de Ahumada 7</li>
+                    <li>28028</li>
+                    <li id="mail">m: whatimefor@wtf.com</li>
+                    <li id="phone">p: +34 999 888 777</li>
+                    <li id="socialMedia">
+                        <a href="">fb</a>  |
+                        <a href="">ig</a>  |
+                        <a href="">tw</a>  |
+                        <a href="">lk</a>
+                    </li>
+                </ul>
+
+        </main>
+
+        <!---------------------------------------------------- LOGIN FORM ----------------->
+        <form action="#" class="form" novalidate>             
+            <div class="input-fields">
+
+                <!-------------------------------------------- EMAIL ---------------------->
+                <input type="email" 
+                id="email" 
+                placeholder="Email"
+                title="Debe usarse un Email valido" 
+                formnovalidate
+                spellcheck="false"
+                autocomplete="off">
+            </input>
+            <span id="mailWrong"></span>
+            
+                <!-------------------------------------------- BOTON --------------------->
+                <input type="submit"  name="button" value="Send" onclick="test(email)">           
+                </div>
+
+                <!---------------------------------- CONTRASEÑA OLVIDAD Y CREAR CUENTA --->            
+            <div className="redirection">
+                <a href="../Login/index.html">Back to Log in </a>
+            </div>       
+        </form>
+    </section>
+</body>
+</html>
