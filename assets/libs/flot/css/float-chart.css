@@ -28,7 +28,7 @@ File: scss
  ============================================================== */
 .flot-chart {
   display: block;
-  height: 300px; }
+  height: 150px; }
 
 .flot-chart-content {
   width: 100%;

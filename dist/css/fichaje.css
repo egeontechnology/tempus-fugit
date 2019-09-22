@@ -1,0 +1,211 @@
+/* ---------------------------------------------------
+  AQUI ESTA EL CSS DE LA PAGINA DE FICHAJES 
+  LA PARTE DEL CHAT TIENE SU PROPIO CSS --> CHAT.CSS
+------------------------------------------------------*/
+
+body{
+  background-color: black;
+  color:white;
+}
+/* -----------------------NAVBAR---------------------------------- */
+#nav-bar{
+  position: sticky;top: 0;z-index: 10;
+}
+.navbar{
+  background: linear-gradient(to right, #1723b1,#58f0ff);padding: 0 !important;
+}
+/* Logo resize */
+.navbar-brand img{
+  height: 4rem;padding-left: 3rem;
+}
+.navbar-nav{
+  margin-right: 3rem;
+}
+.navbar-nav li{
+  padding: 0 1rem;
+}
+.navbar-nav li{
+  padding: 0 1rem;
+}
+.navbar-nav .nav-item .nav-link{
+  color: #fff !important; font-weight: 600; float: right; text-align: left;
+}
+.navbar-nav .nav-item .nav-link:hover{
+  color: #1723b1!important;
+}
+.fa-bars{
+  color: #fff !important; font-size: 25px !important;
+}
+.navbar-toggler{
+  outline: none !important;
+}
+
+/* ----------------------- PERFIL Y CALENDARIO ------------------- */
+#imagenPerfil img{
+  max-width: 100px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border:4px solid rgb(255, 255, 255);
+}
+#imagenPerfil{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0 10px 0;
+}
+
+#nombrePerfil{
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+}
+
+#nombrePerfil #nombre{
+  font-size: 20px;
+  /* text-decoration: underline; */
+}
+#nombrePerfil #puesto{
+  font-size: 12px;
+}
+
+td{
+  border-left:1px solid rgb(0, 0, 0);
+  width: 82px;
+}
+
+#cSelect{
+  margin: 4px auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;  
+}
+
+#cSelect select{
+  text-align: center;
+  padding: 4px 10px;
+  margin: 2px 0;
+  min-width: 230px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 15px;  
+}
+
+#duPerfil{
+  color: rgb(0, 0, 0);
+  display: none;
+}
+
+#duPerfil .row  {
+  min-width: 230px;
+  max-width: 600px;
+  margin: auto;
+}
+
+#duPerfil div{
+  align-content: center;
+  padding: 0;
+}
+
+#duProjects{
+  display: none;
+}
+
+
+
+/* -----------------------FICHAJE------------------- */
+#fichar {
+    text-align: center;
+}
+
+#sistemaFichaje{
+  width:400px;
+  margin: auto;
+  max-height: 310px;
+}
+
+#fichajeCard{
+  display: none;
+}
+
+#reloj {
+    padding-top: 10px;
+    margin: 0 0 35px 0;
+    height: 0;
+}
+
+#relojPadre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#cuentaAtras {
+    /* height: 100px; */
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 10px;
+}
+
+#cuentaAtrasPadre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#sistemaFichaje {
+    text-align: center;
+    height: 340px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+#boton{
+    background-color: rgb(219, 47, 16);
+    border: 4px solid rgb(255, 255, 255);
+    color: white;
+    padding: 40px;
+    margin: 9px 0 20px 0;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 3px 3px #000000;
+    display: inline-block;
+    font-size: 28px;
+    font-weight: bolder;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+#boton:hover{
+  box-shadow: 5px 10px 3px inset black;
+  text-shadow: 6px 6px 3px #000000;
+}
+
+.buttonContainer{
+  display: flex;
+  justify-content: center;
+}
+
+/* --------------------- */
+
+@media only screen and (max-width: 450px) {
+  #sistemaFichaje{
+    width: auto;
+  }
+}

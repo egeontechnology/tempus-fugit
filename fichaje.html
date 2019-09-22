@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Webiz Digital Agency | Bootstrap Template </title>
+  <meta name="description" content="">
+  <link rel="canonical" href="https://www.nameagency.com">
+  <meta property="og:url" content="https://www.nameagency.com">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script src="./dist/js/reloj.js"></script>
+  <script src="./dist/js/codigo.js"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="shortcut icon" href="ico/favicon.ico">
+  <link rel="stylesheet" href="./dist/css/chat.css">
+  <link rel="stylesheet" href="./dist/css/fichaje.css">
+</head>
+
+<body>
+  <!-- Navbar Menu  ---->
+  <section id="nav-bar">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="#">
+        <img src="./assets/images/fichaje/webiz-logo.png" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#top"> Attendancy Recording <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#services"> Clock in/out</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#testimonials">Projects</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </section>
+  <!-- End Navbar Menu  ---->
+
+  <!-- START: dashboard -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!------------------------------------------------------- BETSI ------------------------------>
+        <div class="col-lg-3" id="duPerfil">
+          <!-- FICHA PERFIL USUARIO -->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12" id="imagenPerfil">
+                <img src="./assets/images/fichaje/Naomi Scott.jpg" alt="">
+              </div>
+              <div class="col-12" id="nombrePerfil">
+                <span id="nombre">Naomi Scott</span>
+                <span id="puesto">CTO</span>
+              </div>
+            </div>
+          </div>
+          <!--    Titulo filas -->
+
+          <!-- SELECTORES MES Y AÑO -->
+          <div id="cSelect">
+            <select name="mes" id="mes" onchange="SemanasMes(anno.value, mes.value)">
+              <option value="1">Enero</option>
+              <option value="2">Febrero</option>
+              <option value="3">Marzo</option>
+              <option value="4">Abril</option>
+              <option value="5">Mayo</option>
+              <option value="6">Junio</option>
+              <option value="7">Julio</option>
+              <option value="8">Agosto</option>
+              <option value="9">Septiembre</option>
+              <option value="10">Octubre</option>
+              <option value="11">Noviembre</option>
+              <option value="12">Diciembre</option>
+            </select>
+            <select id="anno" onchange="SemanasMes(anno.value, mes)">
+            </select>
+          </div>
+
+          <div class="container-fluid">
+            <!--    Bloque para manejar los sub-bloques de las semanas -->
+            <div class="row" id="sem1">
+              <!--    Titulo filas -->
+              <div class="col-12 pb-1">
+                <table class="w-100">
+                  <tbody>
+                    <tr class="text-center bg-white">
+                      <td class="align-self-center">
+                        <div id="messem1">WEEKS</div>
+                      </td>
+                      <td class="align-self-center">
+                        <div id="horas2">HOURS / WEEK</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!--    Cada semana ocupa una fila -->
+              <div class="col-12 pb-1">
+                <!--    
+                        Uso una tabla para poder alinear verticalmente las celdas (class="align-self-center" en las celdas <td>)
+                        y que ambos textos queden centrados verticalmente.
+
+                        También hago que la tabla ocupe el 100% de su contenedor (class="w-100")
+                    -->
+                <table class="w-100">
+                  <tbody>
+                    <tr class="text-center bg-white">
+                      <td class="align-self-center">
+                        <div id="lundom1" class="text-center bg-white">4 - 12
+                          <!-- dia lunes - dia domingo -->
+                          <div class="border-top border-secondary"></div>
+                          <!--  Simulo el <hr> pero ocupando menos en vert. -->
+                          <div id="messem1">Septiembre</div> <!-- Mes del primer lunes  -->
+                        </div>
+                      </td>
+                      <td class="align-self-center">
+                        <div id="horas1">34:54:56</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row" id="sem2">
+              <!--    Cada semana ocupa una fila -->
+              <div class="col-12 pb-1">
+                <table class="w-100">
+                  <tbody>
+                    <tr class="text-center bg-white">
+                      <td class="align-self-center">
+                        <!-- dia lunes - dia domingo  el interior se rellena desde el código (ver plantilla en la semana 1-->
+                        <div id="lundom2" class="text-center bg-white">4 - 12
+                          <div class="border-top border-secondary"></div>
+                          <!--  Simulo el <hr> pero ocupando menos en vert. -->
+                          <div id="messem1">Septiembre</div>
+                        </div>
+                      </td>
+                      <td class="align-self-center">
+                        <div id="horas2">34:54:56</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row" id="sem3">
+              <!--    Cada semana ocupa una fila -->
+              <div class="col-12 pb-1">
+                <table class="w-100">
+                  <tbody>
+                    <tr class="text-center bg-white">
+                      <td class="align-self-center">
+                        <!-- dia lunes - dia domingo  el interior se rellena desde el código (ver plantilla en la semana 1-->
+                        <div id="lundom3" class="text-center bg-white">4 - 12
+                          <div class="border-top border-secondary"></div>
+                          <!--  Simulo el <hr> pero ocupando menos en vert. -->
+                          <div id="messem1">Septiembre</div>
+                        </div>
+                      </td>
+                      <td class="align-self-center">
+                        <div id="horas3">34:54:56</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row" id="sem4">
+              <!--    Cada semana ocupa una fila -->
+              <div class="col-12 pb-1">
+                <table class="w-100">
+                  <tbody>
+                    <tr class="text-center bg-white">
+                      <td class="align-self-center">
+                        <!-- dia lunes - dia domingo  el interior se rellena desde el código (ver plantilla en la semana 1-->
+                        <div id="lundom4" class="text-center bg-white">4 - 12
+                          <div class="border-top border-secondary"></div>
+                          <!--  Simulo el <hr> pero ocupando menos en vert. -->
+                          <div id="messem1">Septiembre</div>
+                        </div>
+                      </td>
+                      <td class="align-self-center">
+                        <div id="horas4">34:54:56</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row" id="sem5">
+              <!--    Cada semana ocupa una fila -->
+              <div class="col-12 pb-1">
+                <table class="w-100">
+                  <tbody>
+                    <tr class="text-center bg-white">
+                      <td class="align-self-center">
+                        <!-- dia lunes - dia domingo  el interior se rellena desde el código (ver plantilla en la semana 1-->
+                        <div id="lundom5" class="text-center bg-white">4 - 12
+                          <div class="border-top border-secondary"></div>
+                          <!--  Simulo el <hr> pero ocupando menos en vert. -->
+                          <div id="messem1">Septiembre</div>
+                        </div>
+                      </td>
+                      <td class="align-self-center">
+                        <div id="horas5">34:54:56</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row" id="sem6">
+              <!--    Cada semana ocupa una fila -->
+              <div class="col-12 pb-1">
+                <table class="w-100">
+                  <tbody>
+                    <tr class="text-center bg-white">
+                      <td class="align-self-center">
+                        <!-- dia lunes - dia domingo  el interior se rellena desde el código (ver plantilla en la semana 1-->
+                        <div id="lundom6" class="text-center bg-white">4 - 12
+                          <div class="border-top border-secondary"></div>
+                          <!--  Simulo el <hr> pero ocupando menos en vert. -->
+                          <div id="messem1">Septiembre</div>
+                        </div>
+                      </td>
+                      <td class="align-self-center">
+                        <div id="horas6">34:54:56</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!------------------------------------------------------- ROBERT ----------------------------->
+        <div class="col-lg-6" id="duControl">
+          <div class="row">
+            <div class="col-12" id="fichajeCard">
+              <div class="row" id="sistemaFichaje">
+
+                <!-- Reloj ---------->
+                <div class="col-sm-4" id="relojPadre">
+                  <div>CLOCK</div>
+                  <div id="reloj"></div>
+                </div>
+
+                <!-- Boton fichaje -->
+                <div class="col-sm-4" id="wrapper">
+                  <a href="#" class="my-super-cool-btn">
+                    <div class="buttonContainer">
+                      <a id="boton">GO!</a>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Cuenta atrás -->
+                <div class="col-sm-4" id="cuentaAtrasPadre">
+                  <div>TIME LEFT</div>
+                  <div id="cuentaAtras">03:45</div>
+                </div>
+              </div>
+            </div>
+            <!-- ---------------CHAT------------------- -->
+            <div class="col-12" id="chatCard">
+              <div id="frame">
+                <div class="content">
+                  <div class="contact-profile">
+                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                    <p style="color: blanchedalmond">Harvey Specter</p>
+
+                  </div>
+                  <div class="messages">
+                    <ul>
+                      <li class="sent">
+                        <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
+                        <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!
+                        </p>
+                      </li>
+                      <li class="replies">
+                        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                        <p>When you're backed against the wall, break the god damn thing down.</p>
+                      </li>
+                      <li class="replies">
+                        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                        <p>Excuses don't win championships.</p>
+                      </li>
+                      <li class="sent">
+                        <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
+                        <p>Oh yeah, did Michael Jordan tell you that?</p>
+                      </li>
+                      <li class="replies">
+                        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                        <p>No, I told him that.</p>
+                      </li>
+                      <li class="replies">
+                        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                        <p>What are your choices when someone puts a gun to your head?</p>
+                      </li>
+                      <li class="sent">
+                        <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
+                        <p>What are you talking about? You do what they say or they shoot you.</p>
+                      </li>
+                      <li class="replies">
+                        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                        <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do
+                          any one of a
+                          hundred and forty six other things.</p>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="message-input">
+                    <div class="wrap">
+                      <input type="text" placeholder="Write your message..." />
+                      <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+                      <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-------------------------------------------------------- ANTIA ----------------------------->
+        <div class="col-lg-3" id="duProjects">
+          <h3 class="mb30">ANTIA</h3>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+            blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
+            ocean.</p>
+          <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: dashboard -->
+  <script>
+    document.getElementById("anno").innerHTML = genera_anno();
+
+    // ESTO ES EL SISTEMA DE VENTANAS
+    function orquestador(){
+      if (screen.width <= 600){
+        $('#fichajeCard').show(); 
+        $('#chatCard').hide();  
+        $('#duPerfil').hide(); 
+        $('#duProjects').hide(); 
+      }else{
+        $('#fichajeCard').show(); 
+        $('#chatCard').show();
+        $('#duPerfil').show(); 
+        $('#duProjects').show();   
+      }
+    }
+    orquestador();
+
+  </script>
+</body>
+
+</html>

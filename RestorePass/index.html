@@ -1,101 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <!--antiaEdit-->
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/logoa.png">
+    <title>Restore password</title>
     <link href="https://fonts.googleapis.com/css?family=Merienda+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script>
 
-    function test(){
-        
-        if(password.value.length == 0){
-            document.getElementById("passWrong").innerHTML = "Introduce una contraseña";
-        } 
+        function test() {
 
-        if (document.getElementById('password').value ==
-            document.getElementById('password2').value) {
-            document.getElementById('password2').style.color = 'green';
-        } else {
-            document.getElementById('password2').style.color = 'red';
-    }
-}
+            if (password.value.length == 0) {
+                document.getElementById("passWrong").innerHTML = "Introduce una contraseña";
+            }
+
+            if (document.getElementById('password').value ==
+                document.getElementById('password2').value) {
+                document.getElementById('password2').style.color = 'green';
+            } else {
+                document.getElementById('password2').style.color = 'red';
+            }
+        }
 
 
     </script>
 </head>
+
 <body>
     <section class="wrapper" wrapper>
 
         <!---------------------------------------------------- LOGO ----------------------->
-        <div class="logo">Logo</div>
+        <div class="logo"> <img src="../assets/images/logoGw.png" alt="logo" width="150px"></div>
 
         <!---------------------------------------------------- TITLE ---------------------->
-        <div class="title">Restore password.</div>
+        <div class="title" style="font-weight:bold">Restore password.</div>
 
         <!---------------------------------------------------- MAIN ----------------------->
         <main class="main">
-            
-                <ul id="hello">
-                    <li>Hello</li>
-                    <li>again!</li>
-                </ul>
-                
-                <ul id="direction">
-                    <li>Madrid / Spain</li>
-                    <li>ad. Marqués de Ahumada 7</li>
-                    <li>28028</li>
-                    <li id="mail">m: whatimefor@wtf.com</li>
-                    <li id="phone">p: +34 999 888 777</li>
-                    <li id="socialMedia">
-                        <a href="">fb</a>  |
-                        <a href="">ig</a>  |
-                        <a href="">tw</a>  |
-                        <a href="">lk</a>
-                    </li>
-                </ul>
+            <img src="../assets/images/unlock-400px.png" alt="Hello" width=200px>
+            <br><br>
+            <ul id="direction">
+                <li>Madrid / Spain</li>
+                <li>ad. Marqués de Ahumada 7</li>
+                <li>28028</li>
+                <li id="mail">m: whatimefor@wtf.com</li>
+                <li id="phone">p: +34 999 888 777</li>
+                <li id="socialMedia">
+                    <a href=""><img src="../assets/images/facebook.png" alt="Twitter"></a> |
+                    <a href=""><img src="../assets/images/instagram.png" alt="Twitter"></a> |
+                    <a href=""><img src="../assets/images/twitter.png" alt="Twitter"></a> |
+                    <a href=""><img src="../assets/images/linkedin.png" alt="Twitter"></a>
+                </li>
+            </ul>
 
         </main>
 
         <!---------------------------------------------------- LOGIN FORM ----------------->
-        <form action="#" class="form" novalidate>             
+        <form action="#" class="form" novalidate>
             <div class="input-fields">
 
                 <!-------------------------------------------- NEW PASSWORD ---------------------->
-                <input type="password"
-            id="password"             
-            placeholder="New password" 
-            title="Debe contener 8 carácteres, al menos una letra mayuscula y al menos un numero." 
-            
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            autocomplete="off"> 
-        </input>
-        <span id="passWrong"></span>
-            
-            
-            <!------------------------------------------- REPEAT PASSWORD ------------------>
-            <input type="password"
-            id="password2" 
-            placeholder="Repeat password" 
-            title="Debe contener 8 carácteres, al menos una letra mayuscula y al menos un numero." 
-            
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            autocomplete="off"> 
-        </input>
-        <span id="passWrong"></span>
-        
-        
-                <!-------------------------------------------- BUTTON --------------------->
-                <input type="submit"  name="button" value="Accept" onclick="test()">           
-                </div>
+                <input type="password" id="password" placeholder="New password"
+                    title="Debe contener 8 carácteres, al menos una letra mayuscula y al menos un numero."
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" autocomplete="off">
+                </input>
+                <span id="passWrong"></span>
 
-                <!---------------------------------- CONTRASEÑA OLVIDAD Y CREAR CUENTA --->            
-                <div class="redirection">
+
+                <!------------------------------------------- REPEAT PASSWORD ------------------>
+                <input type="password" id="password2" placeholder="Repeat password"
+                    title="Debe contener 8 carácteres, al menos una letra mayuscula y al menos un numero."
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" autocomplete="off">
+                </input>
+                <span id="passWrong"></span>
+
+
+                <!-------------------------------------------- BUTTON --------------------->
+                <input type="submit" name="button" value="Accept" onclick="test()">
+            </div>
+
+            <!---------------------------------- CONTRASEÑA OLVIDAD Y CREAR CUENTA --->
+            <div class="redirection">
                 <a href="../Login/index.html">Back to Login </a>
-            </div>       
+            </div>
         </form>
     </section>
 </body>
+
 </html>

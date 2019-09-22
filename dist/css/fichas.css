@@ -1,0 +1,25 @@
+#personalData {
+    text-align: center;
+}
+
+#personalData h3 {
+    margin-top: 60px;
+}
+
+#working {
+    height: 20px;
+}
+
+table {
+    text-align: start;
+    margin: auto;
+}
+
+td:first-child {
+    font-weight: bolder;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 10px 5px;
+}

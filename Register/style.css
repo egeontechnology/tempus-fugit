@@ -1,15 +1,15 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     outline: none;
-    font-family: 'Merienda One', cursive;
+    font-family: 'Montserrat', bold;
     letter-spacing: 0.05em;
     color:       white;
 }
 
 body{    
-    background:  #1d1e3c;
+    background:  #0A0A0A;
     margin: 0;
     padding: 0;
 }
@@ -49,9 +49,12 @@ grid-template-areas: "none logo title title"
     
 }
 
-.form {
+.form, #adminTitle, #companyName {
     grid-area: form;
     /* background-color: #8cffa0; */
+}
+#adminTitle, #companyName {
+    text-indent: 15px;
 }
 
 /* ORDENAMOS LA INFORMACION DE LA EMPRESA */
@@ -73,7 +76,7 @@ ul{
 }
 
 /* ----- Ambos inputs------- */
-.input-fields input[type = "email"], .input-fields input[type = "password"] {
+.input-fields input[type = "email"], .input-fields input[type = "password"]{
     background: none;
     text-indent: 40px;
     margin: 14px auto;
@@ -86,8 +89,22 @@ ul{
     -moz-border-radius: 24px;
     -ms-border-radius: 24px;
     -o-border-radius: 24px; 
-} 
-.input-fields input[type = "email"]:focus, .input-fields input[type = "password"]:focus{
+}    
+.input-fields input[type = "text"]{
+        background: none;
+        text-indent: 5px;
+        margin: 8px auto;
+        padding: 10px;    
+        min-width: 295px;
+            /* box-shadow: 0 14px 18px rgba(0, 0, 0, 0.582); */
+    transition: 0.4s;
+    border-radius: 24px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    -o-border-radius: 24px; 
+    }
+.input-fields input[type = "email"]:focus, .input-fields input[type = "password"]:focus, .input-fields input[type = "text"]:focus{
     width: 300px;
     transition: 0.25s; 
 }
@@ -104,6 +121,7 @@ ul{
     background-position: 5% 50%;
     background-size:     22px;
 }
+
 
 span{
     position: relative; 
@@ -141,8 +159,8 @@ span{
 }
 
 .input-fields input[type = "submit"]:hover{
-    border-color:     #e7016c ;
-    background-color: #e7016c ;
+    border-color:     #eb5c5f ;
+    background-color: #eb5c5f ;
     color:            white;
     /* box-shadow: 0 14px 18px rgba(0, 0, 0, 0.582); */
 }
@@ -150,17 +168,17 @@ span{
 .required input:after { content:"*"; }
 
 /* ----Editamos estilos de la validacion de formularios -----*/
-.input-fields input[type = "email"]:valid, .input-fields input[type = "password"]:valid {
+.input-fields input[type = "email"]:valid, .input-fields input[type = "password"]:valid, .input-fields input[type = "name"]:valid {
     box-shadow: none;
 }
 
-.input-fields input[type = "email"]:invalid, .input-fields input[type = "password"]:invalid {
+.input-fields input[type = "email"]:invalid, .input-fields input[type = "password"]:invalid, .input-fields input[type = "text"]:invalid {
     color:#ffffff;
-    border: 2px solid #e7016c;
+    border: 2px solid #eb5c5f;
 } 
 
 span{
-    color: #e7016c;
+    color: #eb5c5f;
 }
 
 /* LOS ENLACES A OTRAS PAGINAS */
@@ -176,7 +194,7 @@ a{
 }
 
 a:hover{
-    color: #e00069;
+    color: #eb5c5f;
     }
 
 /* CENTRAMOS FORGOT PASS Y CREATE ACOUNT */

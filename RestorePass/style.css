@@ -3,13 +3,13 @@
     padding: 0;
     box-sizing: border-box;
     outline: none;
-    font-family: 'Merienda One', cursive;
+    font-family: 'Montserrat', cursive;
     letter-spacing: 0.05em;
     color:       white;
 }
 
 body{    
-    background:  #1d1e3c;
+    background:  #0A0A0A;
     margin: 0;
     padding: 0;
 }
@@ -20,15 +20,17 @@ display: grid;
 height: 100vh;
 grid-template-columns: 0.5fr 1.5fr 300px 1fr;
 grid-template-rows: 0.5fr 1fr 1fr;
-grid-template-areas: "none logo logo title"
-                    "none main form title" 
-                    "none main form title";
+grid-template-areas: "none logo title title"
+                    "none main form vacio" 
+                    "none main form vacio";
 }
 
 /* AQUI ESTÁN LOS 5 GRIDS */
 .logo {
     grid-area: logo;
-    /* background-color: #8ca0ff; */
+    width:0;
+    position: relative;
+    top: 30px;
 }
 
 .title {
@@ -55,7 +57,7 @@ grid-template-areas: "none logo logo title"
 
 /* ORDENAMOS LA INFORMACION DE LA EMPRESA */
 #hello{font-size: 40px;}
-#direction{margin-top: 117px}
+#direction{margin-top: 35px}
 #mail{margin-top: 40px;}
 #phone{margin-top: 20px;}
 #socialMedia{ margin-top: 65px;}
@@ -72,7 +74,7 @@ ul{
 }
 
 /* ----- Ambos inputs------- */
-.input-fields input[type = "password"] {
+.input-fields input[type = "email"], .input-fields input[type = "password"] {
     background: none;
     text-indent: 40px;
     margin: 14px auto;
@@ -86,9 +88,15 @@ ul{
     -ms-border-radius: 24px;
     -o-border-radius: 24px; 
 } 
-.input-fields input[type = "password"]:focus{
+.input-fields input[type = "email"]:focus, .input-fields input[type = "password"]:focus{
     width: 300px;
     transition: 0.25s; 
+}
+#email{
+    background-image:    url(3.png);    
+    background-repeat:   no-repeat;
+    background-position: 5% 50%;
+    background-size:     22px;
 }
 
 .input-fields input[type = "password"]{
@@ -102,7 +110,7 @@ span{
     position: relative; 
     float:right;
     left: 20px;
-    bottom: 70px;
+    bottom: 73px;
     font-size: 11px;
     height: 0;
 }
@@ -134,8 +142,8 @@ span{
 }
 
 .input-fields input[type = "submit"]:hover{
-    border-color:     #e7016c ;
-    background-color: #e7016c ;
+    border-color:     #eb5c5f ;
+    background-color: #eb5c5f ;
     color:            white;
     /* box-shadow: 0 14px 18px rgba(0, 0, 0, 0.582); */
 }
@@ -143,17 +151,17 @@ span{
 .required input:after { content:"*"; }
 
 /* ----Editamos estilos de la validacion de formularios -----*/
-.input-fields input[type = "password"]:valid {
+.input-fields input[type = "email"]:valid, .input-fields input[type = "password"]:valid {
     box-shadow: none;
 }
 
-.input-fields input[type = "password"]:invalid {
+.input-fields input[type = "email"]:invalid, .input-fields input[type = "password"]:invalid {
     color:#ffffff;
-    border: 2px solid #e7016c;
+    border: 2px solid #eb5c5f;
 } 
 
 span{
-    color: #e7016c;
+    color: #eb5c5f;
 }
 
 /* LOS ENLACES A OTRAS PAGINAS */
@@ -169,12 +177,12 @@ a{
 }
 
 a:hover{
-    color: #e00069;
+    color: #eb5c5f;
     }
 
 /* CENTRAMOS FORGOT PASS Y CREATE ACOUNT */
 .redirection{
-    text-align: right;
+    text-align: center;
 }
 
 /* -----Con esto se cambia el color del PLACEHOLDER -----*/
@@ -208,20 +216,15 @@ a:hover{
     .main{
         display: none;
     }
+
+    .logo{
+        left: 30px;
+    }
 }
 
-@media screen and (max-width: 400px){
-    .wrapper {
-        display: grid;
-        height: 100vh;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 0.5fr 1fr 1fr;
-        grid-template-areas:" logo title "
-                            " form form " 
-                            " form form ";
-        }
-
-    .main{
-        display: none;
+@media screen and (max-width: 530px){
+    
+    .title{
+        margin-top: 120px;
     }
 }
