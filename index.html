@@ -196,7 +196,7 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Attendance</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tablaUsuarios.html" aria-expanded="false"><i class="mdi mdi-face"></i><spanclass="hide-menu">Users</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tablaProyectos.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Projects</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="charts.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Analitics</span></a></li>
@@ -224,9 +224,15 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body">                                    
+                                    <div id="filtroFechas">
+                                        Attendancy between: 
+                                        <input type="date">
+                                        and 
+                                        <input type="date">
+                                    </div>
                                     <div class="table-responsive">
-                                        <table id="zero_config" class="table table-hover table-condensed ">
+                                        <table id="zero_config" class="table table-hover table-condensed">
                                             <thead>
                                                 <tr>
                                                     <th>Name</th>
@@ -234,6 +240,7 @@
                                                     <th>In</th>
                                                     <th>Out</th>
                                                     <th>Worked time</th>
+                                                    <th>Date</th>
                                                     <th>Contact</th>
                                                 </tr>
                                             </thead>
@@ -244,6 +251,7 @@
                                                     <td><a href="fichaUsuario.html">09:01</a></td>
                                                     <td><a href="fichaUsuario.html">--:--</a></td>
                                                     <td><a href="fichaUsuario.html">24/40</a></td>
+                                                    <td>12/10/2019</td>
                                                     <td>612 456 789</td>
                                                 </tr>
                                                 <tr onclick="procesa(this.id)">
@@ -252,6 +260,7 @@
                                                     <td>--:--</td>
                                                     <td>--:--</td>
                                                     <td>28/40</td>
+                                                    <td>12/08/2018</td>
                                                     <td>612 456 789</td>
                                                 </tr>
                                             </tbody>
@@ -262,6 +271,7 @@
                                                     <th>In</th>
                                                     <th>Out</th>
                                                     <th>Worked time</th>
+                                                    <th>Date</th>
                                                     <th>Contact</th>
                                                 </tr>
                                             </tfoot>
