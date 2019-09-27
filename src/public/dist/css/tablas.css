@@ -1,0 +1,67 @@
+.page-wrapper{
+    min-height: 90vh;
+}
+
+footer{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+table img{
+    height: 30px;
+    margin-right: 2px;
+    border-radius: 50%;
+}
+.table{
+    text-align: none;
+    border-spacing:0;
+    color: #000000;
+}
+.table a{
+    color: #000000;
+    text-decoration: none;
+}
+
+.table thead th {
+    vertical-align: inherit;
+    border-bottom:0;
+}
+
+.table th, .table thead th {
+    font-weight: bold;
+    border-top:1px  solid #000000;
+    border-bottom:1px  solid #000000;
+    /* border: 1px solid black; */
+}
+.table td, .table th {
+    padding: 5px;
+    vertical-align: inherit;
+    /* border-bottom:1px  solid #000000; */
+}
+
+button{
+    float: right;
+}
+
+.table-responsive{
+    padding: 7px;
+}
+
+#filtroFechas{
+    display: flex;
+    justify-content: end;
+    font-weight: bold;
+    color:black;
+}
+
+#filtroFechas input{
+    margin: 0 10px 
+}
+
+.dataTables_length search {
+    color: black;
+}
+.dataTables_filter {
+    color: black;
+}
