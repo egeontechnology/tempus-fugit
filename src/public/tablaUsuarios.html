@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo2.jpg">
-    <title>WTF - Clock in</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logoa.png">
+    <title>Users</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="assets/extra-libs/multicheck/multicheck.css">
     <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
@@ -183,7 +183,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                                    src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                                    src="assets/images/users/1a.jpg" alt="user" class="rounded-circle" width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                                 <div class="dropdown-divider"></div>
@@ -242,7 +242,7 @@
                     </h3>
                     <div class="col-6">
                         <a href="./formularioUsuario.html">
-                            <button type="button" class="btn btn-dark">Create new user</button>
+                            <button  id="createUser" type="button" class="btn btn-dark">Create new user</button>
                         </a>
                     </div>
                 </div>
@@ -252,41 +252,60 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="table-responsive">
+                                        <!-- INICIO DE TABLAS-->
                                         <table id="zero_config" class="table table-hover table-condensed">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Phone</th>
-                                                    <th>Email</th>
-                                                    <th>Weekly hours</th>
-                                                </tr>
-                                            </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><a href="fichaUsuario.html"><img src="./assets/images/2.jpg">AAA Nixon</a></td>
-                                                    <td><a href="fichaUsuario.html">Boss</a></td>
-                                                    <td><a href="fichaUsuario.html">654 621 689</a></td>
-                                                    <td><a href="fichaUsuario.html">robert.mm@hotmail.com</a></td>
-                                                    <td><a href="fichaUsuario.html">16/40</a></td>
-                                                </tr>
                                                 <tr id="0002" onclick="procesa(this.id)">
-                                                    <td> <img src="./assets/images/2.jpg"> Airi Satou</td>
-                                                    <td>CTO</td>
-                                                    <td>654 621 689</td>
-                                                    <td>robert.mm@hotmail.com</td>
-                                                    <td>33/40</td>
+                                                    <td> <img src="assets/images/#"> Airi Satou</td>
+                                                    <td class=titleTable>Name:</td>
+                                                    <td id="nombre">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class=titleTable>Surname:</td>
+                                                    <td id="apellidos">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class=titleTable>DNI:</td>
+                                                    <td id="dni">&nbsp;</td>   
+                                                </tr>
+                                                <tr>
+                                                    <td class=titleTable>Telephone:</td>
+                                                    <td id="telefono">&nbsp;</td>   
+                                                </tr>                                                    
+                                                <tr>
+                                                    <td class=titleTable>Email:</td>
+                                                    <td id="email">&nbsp;</td>   
+                                                </tr>
+                                                <tr>
+                                                    <td class=titleTable>Password:</td>
+                                                    <td id="contrasena">&nbsp;</td>   
+                                                </tr> 
+                                                <tr>
+                                                    <td class=titleTable>Address:</td>
+                                                    <td id="direccion">&nbsp;</td>   
+                                                </tr>
+                                                <tr>
+                                                    <td class=titleTable>City:</td>
+                                                    <td id="ciudad">&nbsp;</td>   
+                                                </tr>   
+                                                <tr>
+                                                    <td class=titleTable>PC:</td>
+                                                    <td id="cp">&nbsp;</td>   
+                                                </tr>                                                    
+                                                <tr>
+                                                    <td class=titleTable>Country:</td>
+                                                    <td id="pais">&nbsp;</td>   
+                                                </tr>
+                                                <tr>
+                                                    <td class=titleTable>Birth Date:</td>
+                                                    <td id="fechaNacimiento">&nbsp;</td>   
+                                                </tr> 
+                                                <tr>
+                                                    <td class=titleTable>Privilege:</td>
+                                                    <td id="privilegio">&nbsp;</td>   
                                                 </tr>
                                             </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Phone</th>
-                                                    <th>Email</th>
-                                                    <th>Weekly hours</th>
-                                                </tr>
-                                            </tfoot>
+                                            <td id="rta"></td>
                                         </table>
                                     </div>
                                 </div>
@@ -297,10 +316,7 @@
                 <!-- ============================================================== -->
                 <!-- footer -->
                 <!-- ============================================================== -->
-                <footer class="footer text-center">
-                    All Rights Reserved by Matrix-admin. Designed and Developed by <a
-                        href="https://wrappixel.com">WrapPixel</a>.
-                </footer>
+                <footer class="footer text-center" style="font-size: small"> All Rights Reserved by What Time For..? </footer>
                 <!-- ============================================================== -->
                 <!-- End footer -->
                 <!-- ============================================================== -->
@@ -309,6 +325,148 @@
             <!-- End Page wrapper  -->
             <!-- ============================================================== -->
         </div>
+
+
+
+        <!--=========== Introducimos la llamada ajax a la BBDD ==================-->
+        <script>
+            function send_post(accion, datos){
+                $.ajax({
+                    type: "POST",
+                    url: accion, 
+                    data: datos,
+                    success: 
+                        function(data, status){				
+                            procesa_datos_recibidos(data, status, accion, datos);
+                        },
+                    error: 
+                        function(err) {
+                            console.log( "error " + err.status + ' ' + err.statusText);
+                        }
+                });					
+            }
+            
+            function procesa_datos_recibidos(data, status, accion, datos){
+                switch(accion){
+                    case 'busca_usuarios':
+                            if(datos=="id=*"){
+                                // muestra la tabla en el div "procesado"
+                                $('#rta').html(data);
+                                // al hacer click en una fila aparece un mesaje resumen con todos los datos del alumno
+                                //$("#miTabla tbody tr").off('click').on('click',function(){
+                                //	send_post('busca_usuarios', 'id='+this.id)
+                                //});
+                                //Editar un registro	
+                                $('.edit').off('click').on('click',function(){
+                                    //descompone el identificador para obtener el id del registro
+                                    var aux = this.id.split('_');
+                                    var id = aux[1];
+                                    send_post('busca_usuarios', 'id='+id)
+                                });	
+    
+                                //Borrar un registro
+                                $('.borrado').off('click').on('click',function(){
+                                    //descompone el identificador para obtener el id del registro
+                                    var aux = this.id.split('_');
+                                    var id = aux[1];
+                                    var conf = confirm('¿Seguro que quieres borrar el registro '+ id +'?');
+                                    if(conf){
+                                        send_post('borra_usuario', 'id='+id);
+                                    }
+    
+                                })
+    
+                                // aplica formato dataTable	
+                                $('#miTabla').DataTable({
+                                    "order": [[ 2, "asc" ]]
+                                });														
+                            }else{
+                                usuario = JSON.parse(data);
+                                
+                                //Ficha
+                                $('#foto').attr('src','./assets/images/'+usuario[0].foto);
+                                $('#nombre').html(usuario[0].nombre);
+                                $('#apellidos').html(usuario[0].apellidos);
+                                $('#dni').html(usuario[0].dni);
+                                $('#telefono').html(usuario[0].telefono);
+                                $('#email').html(usuario[0].email);
+                                $('#contrasena').html(usuario[0].contrasena);
+                                $('#direccion').html(usuario[0].direccion);
+                                $('#ciudad').html(usuario[0].ciudad);
+                                $('#cp').html(usuario[0].cp);´
+                                $('#pais').html(usuario[0].pais);
+                                $('#nivel').html(usuario[0].nivel);
+                                $('#fechaNacimiento').html(usuario[0].fechaNacimiento);
+                                $('#privilegio').html(usuario[0].privilegio);                               
+                                
+                                // Formulario
+                                $('#fid').val(usuario[0].idusuarios);
+                                $('#fnombre').val(usuario[0].nombre);
+                                $('#fapellidos').val(usuario[0].apellidos);
+                                $('#ftelefono').val(usuario[0].telefono);
+                                $('#femail').val(usuario[0].email);
+                                $('#direccion').val(usuario[0].direccion);
+                                $('#fcontrasena').val(usuario[0].contrasena);
+                                $('#fdireccion').val(usuario[0].direccion);
+                                $('#fciudad').val(usuario[0].ciudad);
+                                $('#fcp').val(usuario[0].cp);
+                                $('#fpais').val(usuario[0].pais);
+                                $('#fnivel').val(usuario[0].nivel);
+                                $('#ffechaNacimiento').val(usuario[0].fechaNacimiento);
+                                $('#fprivilegio').val(usuario[0].privilegio);
+                                $('#enviar').html('Actualizar');
+                                //Muestra formulario y ficha
+                                if($('#profile').css('display')=='none'){
+                                    $('#profile').show(1000);
+                                    $('#formulario').show(1000);
+                                }
+                                
+    
+                                //Borra mensaje
+                                $('#mensaje').html('');
+                            }
+                        break;
+                    case 'actualiza_usuarios':
+                    case 'inserta_usuarios':
+                        $('#mensaje').html(data);
+                        send_post('busca_usuarios', 'id=*')
+                        $('#formulario').hide(1000);
+                        $('#form1').trigger("reset");	
+                        break;
+                    case 'borra_usuario':
+                        alert('Usuario borrado');
+                        send_post('busca_usuarios', 'id=*');
+                        break;
+                    default:
+                        break;
+                }
+            }
+    
+            $('#form1').on('submit',function(e){
+                //Evita la ejecución del submit
+                e.preventDefault(); 
+                
+                if($('#enviar').html() == 'Enviar'){
+                    datos = $('#form1').serialize();
+                    console.log('insert '+ datos);
+                    send_post('inserta_usuario', datos)		
+    
+                }else{
+                    //Perara los datos y los envía con la funcion actualiza_datos
+                    datos = $('#form1').serialize();
+                    console.log(datos);
+                    send_post('actualiza_usuario', datos)		
+                }
+    
+            })
+    
+            $('#nuevo').click(function(){
+                $('#formulario').show(1000);
+            })
+            
+            send_post('busca_usuarios', 'id=*')
+            
+        </script>
         <!-- ============================================================== -->
         <!-- End Wrapper -->
         <!-- ============================================================== -->

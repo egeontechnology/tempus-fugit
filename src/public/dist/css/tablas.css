@@ -2,10 +2,18 @@
     min-height: 90vh;
 }
 
+/*antia*/
+body{
+    color:#fff;
+}
 footer{
     position: absolute;
     bottom: 0px;
     width: 100%;
+}
+
+.card{
+    background-color: #000000;
 }
 
 table img{
@@ -13,13 +21,16 @@ table img{
     margin-right: 2px;
     border-radius: 50%;
 }
+#createUser{
+    padding-right: 38px;
+}
 .table{
     text-align: none;
     border-spacing:0;
-    color: #000000;
+    color: #fff;
 }
 .table a{
-    color: #000000;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -29,9 +40,8 @@ table img{
 }
 
 .table th, .table thead th {
-    font-weight: bold;
-    border-top:1px  solid #000000;
-    border-bottom:1px  solid #000000;
+    border-top:1px  solid #fff;
+    border-bottom:1px  solid #fff;
     /* border: 1px solid black; */
 }
 .table td, .table th {
@@ -51,17 +61,40 @@ button{
 #filtroFechas{
     display: flex;
     justify-content: end;
-    font-weight: bold;
-    color:black;
+    color:#eb5c5f;
+    margin-left: 18px;
 }
 
 #filtroFechas input{
-    margin: 0 10px 
+    margin: 0 10px;
+    -webkit-appearance: searchfield;
 }
 
 .dataTables_length search {
-    color: black;
+    color: #fff;
 }
 .dataTables_filter {
-    color: black;
+    color: #fff;
+}
+
+tr:hover{
+    color: #000000;
+}
+
+th:hover{
+    color: #fff;
+}
+
+#zero_config_info{
+    font-size: 12px;
+    font-weight: lighter;
+
+}
+h3{
+    text-indent: 38px;
+    letter-spacing: 6px;
+    font-weight: 600;
+}
+#mainTitle{
+    margin-right: 38px;
 }
