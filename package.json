@@ -4,7 +4,8 @@
   "description": "Control horario en las organizaciones",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./src/server/nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/eoimadrid2019/tempus-fugit/issues"
   },
-  "homepage": "https://github.com/eoimadrid2019/tempus-fugit#readme"
+  "homepage": "https://github.com/eoimadrid2019/tempus-fugit#readme",
+  "dependencies": {
+    "nodemon": "^1.19.3"
+  }
 }

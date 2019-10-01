@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"> 
+    
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <script src="https://use.fontawesome.com/releases/v5.11.1/js/all.js" data-auto-replace-svg="nest"></script>
+
+<title>Documento sin título</title>
+<style>
+	div{
+		margin:20px;
+		padding:20px;
+		border: 1px solid #ccc;
+		display:inline-block;
+		
+	}
+	#profile{
+		width: 450px;
+		background-color:#eee;
+		padding:30px;
+		display: none;
+		vertical-align:top;
+		border:1px solid #333;
+	}
+	.title{
+		text-align:right;
+		padding:6px 10px;
+		font-weight:bold;
+	}
+	#profile img{
+		border-radius:50%;
+		border:3px double #CC9900;
+		box-shadow: 3px 3px 5px #666;
+	}
+	#descripcion{
+		padding-top:15px;
+	}
+	.cabecera{
+		text-align:center;
+    }
+	#formulario{
+		text-align:center;
+		display: none;
+	}
+	#formulario td{
+		margin:3px;
+		vertical-align:top;
+	}
+	.form-control{
+		border:0;
+		box-shadow:none;
+	}
+	#mensaje{
+		background-color:#3C0;
+		color:#fff;
+	}
+	#usuario{
+		font-size: 10px;
+		text-align: right;
+		font-weight: bold;
+		width: 100%;
+		padding: 5px 30px;
+	}
+</style>
+
+</head>
+
+<body>
+
+<!--    <h1>Demo AJAX</h1>
+    <input id="registro" type="number" placeholder="id" />
+    <button onclick="mandaAjax()">Enviar</button>
+-->
+	<div id="usuario"></div>
+	<h1>alumnos</h1>
+    <table width="100%" border="0" cellspacing="2" cellpadding="2">
+      <tr>
+        <td id="profile">
+	      <h2 class="cabecera">Perfil del alumno </h2>
+          <table>
+            <tr>
+              <td rowspan="4"><img src="" style="width:100px" id="foto"/></td>
+              <td class="title">Nombre: </td>
+              <td id="nombre">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="title">Apellidos: </td>
+              <td id="apellidos">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="title">Teléfono: </td>
+              <td id="telefono">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="title">email: </td>
+              <td id="email">&nbsp;</td>
+            </tr>
+            <tr>
+              <td id="descripcion" colspan="3">&nbsp;</td>
+              </tr>
+          </table>
+        </td>
+        <td id="rta"></td>
+      </tr>
+      <tr>
+      	<td colspan="2">
+      		<button id="nuevo">Nuevo Alumno</button>
+      	</td>
+      </tr>
+
+	  <tr>
+      	<td colspan="2" id="formulario">
+		  <h2 class="cabecera">Perfil del alumno</h2>
+		  <form id="form1" name="form1" method="post" action="">
+              <input type="hidden" id="fid" name="fid"/>
+              <table align="center" >
+              	<tr>
+				  <td colspan="2" id="mensaje">
+					                  
+				  </td>
+                </tr>
+                <tr>
+                  <td class="title">Nombre: </td>
+                  <td class="form-check"><input type="text" class="form-control" name="fnombre" id="fnombre" placeholder="Nombre"/></td>
+                </tr>
+                <tr>
+                  <td class="title">Apellidos: </td>
+                  <td class="form-check"><input type="text" class="form-control" name="fapellidos" id="fapellidos" placeholder="Apellidos"/></td>
+                </tr>
+                <tr>
+                  <td class="title">Teléfono: </td>
+                  <td class="form-check"><input type="text" class="form-control" name="ftelefono" id="ftelefono" placeholder="Teléfono"/></td>
+                </tr>
+                <tr>
+                  <td class="title">email: </td>
+                  <td class="form-check"><input type="text" class="form-control" name="femail" id="femail" placeholder="email" size="30"/></td>
+                </tr>
+                <tr>
+                  <td class="title">Descripción: </td>
+                  <td class="form-check"><textarea class="form-control" name="fdescripcion" id="fdescripcion" cols="80" rows="8">Descripción</textarea></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><button class="btn btn-primary" type="submit" id="enviar">Enviar</button></td>
+                </tr>
+              </table>
+		  </form>
+        </td>
+      </tr>
+    </table>
+
+
+    
+     
+	<script>
+		function send_post(accion, datos){
+			$.ajax({
+				type: "POST",
+				url: accion, 
+				data: datos,
+				success: 
+					function(data, status){				
+						procesa_datos_recibidos(data, status, accion, datos);
+					},
+				error: 
+					function(err) {
+   						console.log( "error " + err.status + ' ' + err.statusText);
+  					}
+			});					
+		}
+		
+		function procesa_datos_recibidos(data, status, accion, datos){
+			switch(accion){
+				case 'busca_alumnos':
+						if(datos=="id=*"){
+							// muestra la tabla en el div "procesado"
+							$('#rta').html(data);
+							// al hacer click en una fila aparece un mesaje resumen con todos los datos del alumno
+							//$("#miTabla tbody tr").off('click').on('click',function(){
+							//	send_post('busca_alumnos', 'id='+this.id)
+							//});
+							//Editar un registro	
+							$('.edit').off('click').on('click',function(){
+								//descompone el identificador para obtener el id del registro
+								var aux = this.id.split('_');
+								var id = aux[1];
+								send_post('busca_alumnos', 'id='+id)
+							});	
+
+							//Borrar un registro
+							$('.borrado').off('click').on('click',function(){
+								//descompone el identificador para obtener el id del registro
+								var aux = this.id.split('_');
+								var id = aux[1];
+								var conf = confirm('¿Seguro que quieres borrar el registro '+ id +'?');
+								if(conf){
+									send_post('borra_alumno', 'id='+id);
+								}
+
+							})
+
+							// aplica formato dataTable	
+							$('#miTabla').DataTable({
+								"order": [[ 2, "asc" ]]
+							});														
+						}else{
+							alumno = JSON.parse(data);
+							
+							//Ficha
+							$('#foto').attr('src','./img/'+alumno[0].foto);
+							$('#nombre').html(alumno[0].nombre);
+							$('#apellidos').html(alumno[0].apellidos);
+							$('#telefono').html(alumno[0].telefono);
+							$('#email').html(alumno[0].email);
+							$('#descripcion').html(alumno[0].descripcion);
+							
+							// Formulario
+							$('#fid').val(alumno[0].id);
+							$('#fnombre').val(alumno[0].nombre);
+							$('#fapellidos').val(alumno[0].apellidos);
+							$('#ftelefono').val(alumno[0].telefono);
+							$('#femail').val(alumno[0].email);
+							$('#fdescripcion').val(alumno[0].descripcion);
+							$('#enviar').html('Actualizar');
+							//Muestra formulario y ficha
+							if($('#profile').css('display')=='none'){
+								$('#profile').show(1000);
+								$('#formulario').show(1000);
+							}
+							
+
+							//Borra mensaje
+							$('#mensaje').html('');
+						}
+					break;
+				case 'actualiza_alumno':
+				case 'inserta_alumno':
+					$('#mensaje').html(data);
+					send_post('busca_alumnos', 'id=*');
+					$('#formulario').hide(1000);
+					$('#form1').trigger("reset");	
+					break;
+				case 'borra_alumno':
+					alert('Alumno borrado');
+					send_post('busca_alumnos', 'id=*');
+					break;
+				default:
+					break;
+			}
+		}
+
+		$('#form1').on('submit',function(e){
+			//Evita la ejecución del submit
+			e.preventDefault(); 
+			
+			if($('#enviar').html() == 'Enviar'){
+				datos = $('#form1').serialize();
+				console.log('insert '+ datos);
+				send_post('inserta_alumno', datos)		
+
+			}else{
+				//Perara los datos y los envía con la funcion actualiza_datos
+				datos = $('#form1').serialize();
+				console.log(datos);
+				send_post('actualiza_alumno', datos)		
+			}
+
+		})
+
+		$('#nuevo').click(function(){
+			$('#form1').trigger("reset");
+			$('#formulario').show(1000);
+			$('#enviar').html('Enviar');
+		})
+		
+		
+		// Si está registrado muestra la página
+		if(sessionStorage.getItem('login') == 'true'){
+			$('#usuario').html('<i class="fas fa-user"></i> Usuario: '+ sessionStorage.getItem('usuario'));
+			
+			send_post('busca_alumnos', 'id=*');		
+		}else{// Si no lo está vuelve a login
+			window.location.href = 'cifrado1.html';
+		}
+
+		
+    </script>
+</body>
+</html>
+
+
+
+

@@ -93,14 +93,14 @@ ul{
     transition: 0.25s; 
 }
 #email{
-    background-image:    url(3.png);    
+    background-image:    url(../../assets/images/3.png);    
     background-repeat:   no-repeat;
     background-position: 5% 50%;
     background-size:     22px;
 }
 
 #password{
-    background-image:    url(candado.svg);
+    background-image:    url(../../assets/images/candado.svg);
     background-repeat:   no-repeat;
     background-position: 5% 50%;
     background-size:     22px;

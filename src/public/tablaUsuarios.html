@@ -7,7 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="">    
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo2.jpg">
     <title>WTF - Clock in</title>
@@ -16,7 +16,6 @@
     <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="dist/css/style.min.css" rel="stylesheet">
     <link href="dist/css/tablas.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -189,7 +188,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
                                 <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                                    <a id="logOut" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                             </div>
                         </li>
                         <!-- ============================================================== -->
@@ -251,43 +250,8 @@
                         <div class="card">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table id="zero_config" class="table table-hover table-condensed">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Phone</th>
-                                                    <th>Email</th>
-                                                    <th>Weekly hours</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a href="fichaUsuario.html"><img src="./assets/images/2.jpg">AAA Nixon</a></td>
-                                                    <td><a href="fichaUsuario.html">Boss</a></td>
-                                                    <td><a href="fichaUsuario.html">654 621 689</a></td>
-                                                    <td><a href="fichaUsuario.html">robert.mm@hotmail.com</a></td>
-                                                    <td><a href="fichaUsuario.html">16/40</a></td>
-                                                </tr>
-                                                <tr id="0002" onclick="procesa(this.id)">
-                                                    <td> <img src="./assets/images/2.jpg"> Airi Satou</td>
-                                                    <td>CTO</td>
-                                                    <td>654 621 689</td>
-                                                    <td>robert.mm@hotmail.com</td>
-                                                    <td>33/40</td>
-                                                </tr>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Phone</th>
-                                                    <th>Email</th>
-                                                    <th>Weekly hours</th>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
+                                    <div class="table-responsive" id="tusuarios">
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -319,6 +283,8 @@
         <!-- ============================================================== -->
         <!-- All Jquery -->
         <!-- ============================================================== -->
+        
+
         <script src="assets/libs/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap tether Core JavaScript -->
         <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
@@ -336,11 +302,57 @@
         <script src="assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
         <script src="assets/extra-libs/multicheck/jquery.multicheck.js"></script>
         <script src="assets/extra-libs/DataTables/datatables.min.js"></script>
+        <!-- Check if the user is logged -->
+        <script src="./dist/js/checkIfLogged.js"></script>
         <script>
             /****************************************
              *       Basic Table                   *
              ****************************************/
             $('#zero_config').DataTable();
+        </script>
+        <script>
+            function send_post(accion, datos) {
+                    $.ajax({
+                        type: "POST",
+                        url: accion,
+                        data: datos,
+                        success:
+                            function (data, status) {
+                                procesa_datos_recibidos(data, status, accion, datos);
+                            },
+                        error:
+                            function (err) {
+                                console.log("error " + err.status + ' ' + err.statusText);
+                            }
+                    });
+                }
+            
+            send_post("busca_usuarios", "idusuarios=*");
+
+            function procesa_datos_recibidos(data, status, accion, datos){
+			switch(accion){
+				case 'busca_usuarios':
+						if(datos=="idusuarios=*"){
+							// muestra la tabla en el div "procesado"
+							$('#tusuarios').html(data);
+							// al hacer click en una fila aparece un mesaje resumen con todos los datos del alumno
+							$("#miTabla tbody tr").off('click').on('click',function(){
+								send_post('busca_alumnos', 'idusuarios='+this.id)
+							});						
+
+							// aplica formato dataTable	
+							$('#miTabla').DataTable({
+								"order": [[ 2, "asc" ]]
+							});														
+                        }else{
+
+                        }
+                    break;							
+				
+				default:
+					break;
+			}
+		}
         </script>
 
 </body>

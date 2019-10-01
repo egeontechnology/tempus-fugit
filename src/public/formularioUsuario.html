@@ -16,7 +16,6 @@
     <link rel="stylesheet" type="text/css" href="assets/libs/jquery-minicolors/jquery.minicolors.css">
     <link rel="stylesheet" type="text/css"
         href="assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/libs/quill/dist/quill.snow.css">
     <link href="dist/css/style.min.css" rel="stylesheet">
 </head>
 
@@ -190,7 +189,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
                                 <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                                    <a id="logOut" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                             </div>
                         </li>
                         <!-- ============================================================== -->
@@ -599,7 +598,8 @@
         <script src="assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
         <script src="assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
         <script src="assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        <script src="assets/libs/quill/dist/quill.min.js"></script>
+        <!-- Check if the user is logged -->
+        <script src="./dist/js/checkIfLogged.js"></script>
         <script>
             //***********************************//
             // For select 2
@@ -637,9 +637,6 @@
             jQuery('#datepicker-autoclose').datepicker({
                 autoclose: true,
                 todayHighlight: true
-            });
-            var quill = new Quill('#editor', {
-                theme: 'snow'
             });
 
         </script>

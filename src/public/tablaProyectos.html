@@ -10,12 +10,13 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo2.jpg">
-    <title>WTF - Clock in</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="assets/extra-libs/multicheck/multicheck.css">
     <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="dist/css/style.min.css" rel="stylesheet">
     <link href="dist/css/tablas.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>WTF - Clock in</title>
 </head>
 
 <body>
@@ -181,7 +182,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
                                 <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                                    <a id="logOut" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                             </div>
                         </li>
                         <!-- ============================================================== -->
@@ -376,7 +377,9 @@
         <!-- this page js -->
         <script src="assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
         <script src="assets/extra-libs/multicheck/jquery.multicheck.js"></script>
-        <script src="assets/extra-libs/DataTables/datatables.min.js"></script>
+        <script src="assets/extra-libs/DataTables/datatables.min.js"></script>        
+        <!-- Check if the user is logged -->
+        <script src="./dist/js/checkIfLogged.js"></script>
         <script>
             // BASIC TABLE
             $('#zero_config').DataTable();

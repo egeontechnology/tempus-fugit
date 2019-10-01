@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>LOGIN</title>
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- Cifrado -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha224.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha384.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha512.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha3.js"></script>
+
+<style>
+	#formulario{
+		margin: 20px auto;
+		text-align:center;
+		padding:20px;
+		width:300px;
+		background-color:#fcfcfc;
+		border-radius:20px;
+		border:1px solid #CCC;
+		box-shadow:2px 2px 5px #333333;		
+	}
+	table{
+		margin: 0 auto;
+		border: 1px solid #666;
+	}
+	tr{
+		border: 1px solid #666;
+	}
+	td{
+		padding:3px;
+	}
+	#msg{
+		text-align:center;
+		font-size:16px;
+	}
+	#cifrados{
+		display:none;
+	}
+</style>
+</head>
+
+<body>
+<div id="formulario">
+    <form id="login_form" name="login_form" method="post">
+        <input class="form-control" name="usuario" id="usuario" type="email" placeholder="Usuario" required/>
+        <br />
+        <input class="form-control" name="password" id="password" type="password" placeholder="Password (min. 4 caracteres)" required/>
+        <br />
+        <button id="enviar" type="submit">Acceder</button>
+    </form>
+</div>  
+
+<br><br>
+<div id="msg"></div>
+<br><br>
+<div id="cifrados">
+<table>
+  <tr>
+    <th scope="col">Método</th>
+    <th scope="col">Hash</th>
+  </tr>
+  <tr>
+    <td>AES</td>
+    <td id="aes"></td>
+  </tr>  
+  <tr>
+    <td>MD5</td>
+    <td id="md5"></td>
+  </tr>  
+  <tr>
+    <td>SHA1</td>
+    <td id="sha1"></td>
+  </tr>
+  <tr>
+    <td>SHA224</td>
+    <td id="sha224"></td>
+  </tr>
+  <tr>
+    <td>SHA256</td>
+    <td id="sha256"></td>
+  </tr>
+  <tr>
+    <td>SHA384</td>
+    <td id="sha384"></td>
+  </tr>
+  <tr>
+    <td>SHA512</td>
+    <td id="sha512"></td>
+  </tr>
+  <tr>
+    <td>SHA3 - 224</td>
+    <td id="sha3-224"></td>
+  </tr>
+   <tr>
+    <td>SHA3 - 256</td>
+    <td id="sha3-256"></td>
+  </tr>
+  <tr>
+    <td>SHA3 - 384</td>
+    <td id="sha3-384"></td>
+  </tr>
+  <tr>
+    <td>SHA3 - 512</td>
+    <td id="sha3-512"></td>
+  </tr>
+</table>
+
+</body>
+<script type="text/javascript">
+	$('#enviar').click(function(e){	
+		//Evita la ejecución del submit
+		e.preventDefault(); 
+		//borra mensages previos
+		$("#msg").html('');
+		//oculta la tabla
+		$("#cifrados").hide(1000);	
+		
+		//comprueda si el email es válido
+		if(/\S+@\S+\.\S+/.test($("#usuario").val())){
+			if($("#password").val().length>=4){
+				//rellena la tabla
+				$("#aes").text(CryptoJS.AES.encrypt($('#password').val(),$('#usuario').val()));
+				$("#md5").text(CryptoJS.MD5($('#password').val()));
+				$("#sha1").text(CryptoJS.SHA1($('#password').val()));
+				$("#sha224").text(CryptoJS.SHA224($('#password').val()));
+				$("#sha256").text(CryptoJS.SHA256($('#password').val()));
+				$("#sha384").text(CryptoJS.SHA384($('#password').val()));
+				$("#sha512").text(CryptoJS.SHA512($('#password').val()));
+				$("#sha3-224").text(CryptoJS.SHA3($('#password').val(),{ outputLength: 224 }));
+				$("#sha3-256").text(CryptoJS.SHA3($('#password').val(),{ outputLength: 256 }));
+				$("#sha3-384").text(CryptoJS.SHA3($('#password').val(),{ outputLength: 384 }));
+				$("#sha3-512").text(CryptoJS.SHA3($('#password').val(),{ outputLength: 512 }));
+				//muestra la tabla
+				$("#cifrados").show();	
+				
+				//Envía la petición para comprobar credenciales
+				var dato= 'usuario=' + $('#usuario').val() + '&password=' + CryptoJS.SHA3($('#password').val(),{ outputLength: 128 });
+				send_post('login', dato);	
+			}else{
+				$("#msg").html('password no válido');
+			}
+			
+		}else{	
+			$("#msg").html('email no válido');
+		}
+
+		function send_post(accion, datos){
+			console.log(accion);
+			$.ajax({
+				type: "POST",
+				url: accion, 
+				data: datos,
+				success: 
+					function(data, status){	
+						procesa_datos_recibidos(data, status, accion, datos);
+					},
+				error: 
+					function(err) {
+   						console.log( "error " + err.status + ' ' + err.statusText);
+  					}
+			});					
+		}
+		
+		function procesa_datos_recibidos(data, status, accion, datos){
+			switch(accion){
+				case 'login':
+					switch(data){
+						case 'ok':
+								//Ir a la pagina proncipal
+								$("#msg").html('OK - Vamos a la página principal');
+							break;
+						case 'ko':
+							$("#msg").html('Credenciales no válidas');
+							break;
+					}
+					break;
+				default:
+					break;
+			}
+		}
+
+
+//		var encrypted = CryptoJS.AES.encrypt($('#password').val(), $('#usuario').val());
+//		var decrypted = CryptoJS.AES.decrypt(encrypted, $('#usuario').val());
+	});
+</script>
+</html>
