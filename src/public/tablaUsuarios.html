@@ -337,7 +337,7 @@
 							$('#tusuarios').html(data);
 							// al hacer click en una fila aparece un mesaje resumen con todos los datos del alumno
 							$("#miTabla tbody tr").off('click').on('click',function(){
-								send_post('busca_alumnos', 'idusuarios='+this.id)
+								send_post('busca_usuarios', 'idusuarios='+this.id)
 							});						
 
 							// aplica formato dataTable	
