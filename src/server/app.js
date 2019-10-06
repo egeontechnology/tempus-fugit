@@ -50,7 +50,7 @@ app.post('/busca_usuarios', function (req, res) {
 	// // console.log('condición de busqueda mySQL es WHERE : '+condicion);
 
 	
-	con.query("SELECT tusuarios.idusuarios, tusuarios.nombre, tusuarios.apellidos, tposition.position, tusuarios.telefono, tusuarios.email FROM tusuarios INNER JOIN tposition on tusuarios.position = tposition.idposition WHERE " + condicion, function (err, result, fields) {
+	con.query("SELECT tusuarios.idusuarios, tusuarios.nombre, tusuarios.apellidos, tusuarios.telefono, tusuarios.email,tusuarios.direccion, tusuarios.pais, tusuarios.cp, tusuarios.ciudad, tusuarios.foto, tusuarios.fechaNacimiento, tposition.position  FROM tusuarios INNER JOIN tposition on tusuarios.position = tposition.idposition WHERE " + condicion, function (err, result, fields) {
 		if (err) throw err;
 		// console.log(result)
 		//Si busca todos los alumnos
@@ -62,7 +62,7 @@ app.post('/busca_usuarios', function (req, res) {
 
 			//Filas tabla
 			for(var i=0; i<result.length; i++){				
-				rta += '<tr id="'+ result[i].idusuarios+'"><td>'+result[i].nombre + ' '+ result[i].apellidos + '</td><td>' +result[i].position +'</td><td>' + result[i].telefono + '</td><td>' + result[i].email + '</td><td>' + result[i].idusuarios + '</td></tr>';
+				rta += '<tr data-toggle="modal" data-target="#myModal" id="'+ result[i].idusuarios+'"><td>'+result[i].nombre + ' '+ result[i].apellidos + '</td><td>' +result[i].position +'</td><td>' + result[i].telefono + '</td><td>' + result[i].email + '</td><td>' + result[i].idusuarios + '</td></tr>';
 				// console.log(i+"--"+rta);
 			}
 			//Fin tabla

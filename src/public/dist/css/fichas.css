@@ -3,7 +3,7 @@
 }
 
 #personalData h3 {
-    margin-top: 60px;
+    margin-top: 117px;
 }
 
 #working {
@@ -33,4 +33,15 @@ table {
 #bordeFu2{
     border-top: 1px solid black;
     border-bottom: 1px solid black;
+}
+
+/* ---------------------MODAL----------------------------- */
+
+.modal-body{
+    padding: 0%;
+}
+
+.modal-body input{
+    border:none;
+    color: #3e5569;
 }
