@@ -23,14 +23,14 @@ function test(email, password){
 if(email.value == "admin@gmail.com"){
     document.getElementById("mailWrong").innerHTML = "";
 }else{
-    document.getElementById("mailWrong").innerHTML = "Email incorrecto";
+    document.getElementById("mailWrong").innerHTML = "";
 
 }
 
 if(password.value.length == 0){
     document.getElementById("passWrong").innerHTML = "Forgot your password?";
 }else if(password.value != "Admin1234"){
-    document.getElementById("passWrong").innerHTML = "Wrong password";
+    document.getElementById("passWrong").innerHTML = "";
 }else{
     document.getElementById("passWrong").innerHTML = "";
 }
