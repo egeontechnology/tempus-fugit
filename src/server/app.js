@@ -118,15 +118,10 @@ app.post('/busca_fichajes', function (req, res) {
 	} else{
 		condicion2 = today;
 	}
-	console.log(condicion)
-
-	console.log(condicion2)
-	condicion3 = "2019-10-08";
-	console.log(condicion3)
 
 	sql="SELECT * FROM tfichajes WHERE fecha='" + condicion2 + "' and usuario='" + condicion+"'";
 
-	console.log(condicion + '-->>' + sql);
+	// console.log(condicion + '-->>' + sql);
 	
 	con.query(sql, function (err, result, fields) {
 		if (err) throw err;
