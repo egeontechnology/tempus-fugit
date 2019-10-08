@@ -79,14 +79,16 @@ app.post('/busca_usuarios', function (req, res) {
 });
 
 app.post('/busca_proyectos', function (req, res) {
-	condicion = req.body.idusuarios;
+	
+	condicion = req.body.idusuarios;	
+
 	con.query("SELECT tusuarios.idusuarios, tusuarios.nombre, tproyectos.nombreproyecto, tproyectos.inicio FROM tusuarios JOIN tuserproject ON tuserproject.idusuarios = tusuarios.idusuarios JOIN tproyectos ON tproyectos.idproyectos = tuserproject.idproyectos WHERE tusuarios.idusuarios=" + condicion, function (err, result, fields) {
 		if (err) throw err;
 		//Si busca todos los alumnos
 
 		var rta2 = '<table id="miTabla2">';
 		for(var i=0; i<result.length; i++){				
-			rta2 += '<tr id="'+ result[i].idusuarios+'"><td>'+result[i].nombreproyecto + '</td><td>' + result[i].inicio + '</td></tr>';
+			rta2 += '<tr id="'+ result[i].fichajes+'"><td>'+result[i].nombreproyecto + '</td><td>' + result[i].inicio + '</td></tr>';
 			// console.log(i+"--"+rta);
 		}
 		rta2 += '</table>';
@@ -99,21 +101,48 @@ app.post('/busca_proyectos', function (req, res) {
 
 app.post('/busca_fichajes', function (req, res) {
 	// Si la petición es de de todos los registros (id=*) la condición de búsqueda
-	condicion = req.body.idusuarios;
-	con.query("SELECT tusuarios.idusuarios, tusuarios.nombre, tproyectos.nombreproyecto, tproyectos.inicio FROM tusuarios JOIN tuserproject ON tuserproject.idusuarios = tusuarios.idusuarios JOIN tproyectos ON tproyectos.idproyectos = tuserproject.idproyectos WHERE tusuarios.idusuarios=" + condicion, function (err, result, fields) {
+	
+	// Calculamos la fecha de hoy
+	var today = new Date();
+	var dd = String(today.getDate()).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyy = today.getFullYear();
+	today = yyyy+ '-' + mm + '-' + dd ;
+	// console.log(today + "<<----");
+	
+	
+	// Variables que necesitamos para la sentencia SQL
+	condicion = req.body.idusuarios; //id usuario seleccionado
+	if ( req.body.fecha!=null) {
+		condicion2 = req.body.fecha;
+	} else{
+		condicion2 = today;
+	}
+	console.log(condicion)
+
+	console.log(condicion2)
+	condicion3 = "2019-10-08";
+	console.log(condicion3)
+
+	sql="SELECT * FROM tfichajes WHERE fecha='" + condicion2 + "' and usuario='" + condicion+"'";
+
+	console.log(condicion + '-->>' + sql);
+	
+	con.query(sql, function (err, result, fields) {
 		if (err) throw err;
 		//Si busca todos los alumnos
 
-		var rta2 = '<table id="miTabla2">';
+		// console.log(result)
+		var rtafichaje = '<table id="tablaFichajes">';
 		for(var i=0; i<result.length; i++){				
-			rta2 += '<tr id="'+ result[i].idusuarios+'"><td>'+result[i].nombreproyecto + '</td><td>' + result[i].inicio + '</td></tr>';
-			// console.log(i+"--"+rta);
+			rtafichaje += '<tr id="'+ result[i].idfichajes+'"><td>'+ (result[i].tipo == 0 ? "IN" : "OUT") + '</td><td>' + result[i].hora + '</td></tr>';
 		}
-		rta2 += '</table>';
-		// console.log(rta2);
+		rtafichaje += '</table>';
+		// console.log(rtafichaje);
 		
+
 		//Devuelve la respuesta
-		res.send(rta2);
+		res.send(rtafichaje);
 	});
 });
 

@@ -316,6 +316,10 @@
                                                             <table>
                                                                 <tr>
                                                                     <td>First name</td>
+                                                                    <td><input type="text" value="" id="fidusuario"></td>
+                                                                <tr>
+                                                                <tr>
+                                                                    <td>First name</td>
                                                                     <td><input type="text" value="" id="fnombre"></td>
                                                                 <tr>
                                                                     <td>Last name</td>
@@ -370,20 +374,7 @@
                                                                 <h3 class="text-center w-100">Projects list</h3>
                                                             </div>
                                                             <div id="presentProyectos">
-                                                                <table>
-                                                                    <tr>
-                                                                        <td>Crypto coins</td>
-                                                                        <td>10/10/2017</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Mandala bomb</td>
-                                                                        <td>08/01/2009</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Fire action man</td>
-                                                                        <td>30/04/2002</td>
-                                                                    </tr>
-                                                                </table>
+                                                                <!-- Aqui pintamos la tabla de PROYECTOS -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -394,19 +385,10 @@
                                                     <h3 class="text-center w-100">Work day</h3>
                                                 </div>
                                                 <div class="card">
-                                                    <input type="date" class="w-75 mx-auto text-center mt-3">
+                                                    <input id="selectDay" type="date" class="w-75 mx-auto text-center mt-3">
                                                 </div>
-                                                <div class="col-12 w-75 mx-auto">
-                                                    <table>
-                                                        <tr>
-                                                            <td>Clock IN</td>
-                                                            <td>09:00:09</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Clock OUT</td>
-                                                            <td>11:59:00</td>
-                                                        </tr>
-                                                    </table>
+                                                <div class="col-12 w-75 mx-auto" id="fichajesusuario">
+                                                    <!-- Aqui pintamos la tabla de fichajes del dia -->
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -523,6 +505,7 @@
             $('#zero_config').DataTable();
         </script>
         <script>
+            var editando = 0;
             $('#presentProyectos').html("hi");
             function send_post(accion, datos) {
                 $.ajax({
@@ -541,11 +524,10 @@
             }
 
             send_post("busca_usuarios", "idusuarios=*");
-            // send_post("busca_proyectos", "idusuarios=*");
-
 
             function procesa_datos_recibidos(data, status, accion, datos) {
-                // console.log(data)
+                console.log(data)                
+
                 switch (accion) {
                     case 'busca_usuarios':
                         if (datos == "idusuarios=*") {
@@ -555,9 +537,16 @@
                             $("#miTabla tbody tr").off('click').on('click', function () {
                                 send_post('busca_usuarios', 'idusuarios=' + this.id);
                                 send_post('busca_proyectos', 'idusuarios=' + this.id);
+                                send_post('busca_fichajes', 'idusuarios=' + this.id);
+                                editando = this.id;
+                            console.log(editando)                               
+
+                                $("#selectDay").off('change').on('change',function(){
+                                    var estaFecha = $("#selectDay").val()
+                                    console.log(estaFecha);
+                                    send_post('busca_fichajes', 'fecha=' + estaFecha + '&idusuarios=' + $('#fidusuario').val());
+                                });
                                 // console.log(data);
-                                // $('#presentProyectos').html(data);
-                                // $('#presentProyectos').html("hi");
                             });
                             // aplica formato dataTable	
                             $('#miTabla').DataTable({
@@ -579,7 +568,9 @@
                             $('#email').html(usuario[0].email);
                             // console.log(usuario[0].nombre)
 
+
                             // FORMULARIO EDITABLE
+                            $('#fidusuario').val(usuario[0].idusuarios);
                             $('#fnombre').val(usuario[0].nombre);
                             $('#fapellido').val(usuario[0].apellidos);
                             $('#ffecha').val(usuario[0].fechaNacimiento);
@@ -590,10 +581,23 @@
                             $('#femail').val(usuario[0].email);
                             $('#ftel').val(usuario[0].telefono);
                             $('#fpuesto').val(usuario[0].position);
+
+                            // Actualizamos fecha actual
+                            // Calculamos la fecha de hoy
+                            var today = new Date();
+                            var dd = String(today.getDate()).padStart(2, '0');
+                            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                            var yyyy = today.getFullYear();
+                            today = yyyy+ '-' + mm + '-' + dd ;
+                            $("#selectDay").val(today);
                         }
                         break;
                     case 'busca_proyectos':
                         $('#presentProyectos').html(data);
+                        break;
+                    case 'busca_fichajes':
+                        $('#fichajesusuario').html(data);
+                        
                         break;
                     default:
                         break;
