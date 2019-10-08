@@ -48,7 +48,6 @@ app.post('/busca_usuarios', function (req, res) {
 		condicion = "idusuarios="+req.body.idusuarios;
 	}
 	// // console.log('condición de busqueda mySQL es WHERE : '+condicion);
-
 	
 	con.query("SELECT tusuarios.idusuarios, tusuarios.nombre, tusuarios.apellidos, tusuarios.telefono, tusuarios.email,tusuarios.direccion, tusuarios.pais, tusuarios.cp, tusuarios.ciudad, tusuarios.foto, tusuarios.fechaNacimiento, tposition.position  FROM tusuarios INNER JOIN tposition on tusuarios.position = tposition.idposition WHERE " + condicion, function (err, result, fields) {
 		if (err) throw err;
@@ -72,22 +71,56 @@ app.post('/busca_usuarios', function (req, res) {
 			//Elimina el password
 			result[0].password='';
 			rta = JSON.stringify(result);
-			console.log(rta)
+			// console.log(rta);
 		}		
 		//Devuelve la respuesta
 		res.send(rta);
 	});
-
 });
 
+app.post('/busca_proyectos', function (req, res) {
+	condicion = req.body.idusuarios;
+	con.query("SELECT tusuarios.idusuarios, tusuarios.nombre, tproyectos.nombreproyecto, tproyectos.inicio FROM tusuarios JOIN tuserproject ON tuserproject.idusuarios = tusuarios.idusuarios JOIN tproyectos ON tproyectos.idproyectos = tuserproject.idproyectos WHERE tusuarios.idusuarios=" + condicion, function (err, result, fields) {
+		if (err) throw err;
+		//Si busca todos los alumnos
 
+		var rta2 = '<table id="miTabla2">';
+		for(var i=0; i<result.length; i++){				
+			rta2 += '<tr id="'+ result[i].idusuarios+'"><td>'+result[i].nombreproyecto + '</td><td>' + result[i].inicio + '</td></tr>';
+			// console.log(i+"--"+rta);
+		}
+		rta2 += '</table>';
+		// console.log(rta2);
+		
+		//Devuelve la respuesta
+		res.send(rta2);
+	});
+});
+
+app.post('/busca_fichajes', function (req, res) {
+	// Si la petición es de de todos los registros (id=*) la condición de búsqueda
+	condicion = req.body.idusuarios;
+	con.query("SELECT tusuarios.idusuarios, tusuarios.nombre, tproyectos.nombreproyecto, tproyectos.inicio FROM tusuarios JOIN tuserproject ON tuserproject.idusuarios = tusuarios.idusuarios JOIN tproyectos ON tproyectos.idproyectos = tuserproject.idproyectos WHERE tusuarios.idusuarios=" + condicion, function (err, result, fields) {
+		if (err) throw err;
+		//Si busca todos los alumnos
+
+		var rta2 = '<table id="miTabla2">';
+		for(var i=0; i<result.length; i++){				
+			rta2 += '<tr id="'+ result[i].idusuarios+'"><td>'+result[i].nombreproyecto + '</td><td>' + result[i].inicio + '</td></tr>';
+			// console.log(i+"--"+rta);
+		}
+		rta2 += '</table>';
+		// console.log(rta2);
+		
+		//Devuelve la respuesta
+		res.send(rta2);
+	});
+});
 
 app.use("/", express.static("./../public"));
 
 app.listen(8080, function () {
 	console.log('Example app listening on port 8080!');
 });
-
-
 
 // JavaScript Document
