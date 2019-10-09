@@ -247,7 +247,8 @@
                         <div class="card">
                             <form id="formUser" name="formUser" method="post" action="" >
                                 <div class="card-body">
-                                    <h4 class="card-title">New user</h4>
+                                    <div id="success" style="text-align: center; color: red; margin: 3px; font-weight:bolder; font-size:16px; display: none">Success!</div>
+                                    <h4 class="card-title">New user</h4>                                    
                                     <div class="form-group row">
                                         <label class="col-sm-2 text-right control-label col-form-label">First Name</label>
                                         <div class="col-sm-4">
@@ -309,13 +310,8 @@
                                         <div class="col-sm-4">
                                             <select class="select2 form-control custom-select" id="aposition" name="aposition" required>
                                                 <option value="">Select</option>                                                
-                                                <optgroup>
-                                                    <option value="1">CEO</option>
-                                                    <option value="2">CFO</option>
-                                                    <option value="3">CTO</option>
-                                                    <option value="4">CIO</option>
-                                                    <option value="5">COO</option>
-                                                    <option value="6">CMO</option>
+                                                <optgroup id="inserPositions"> 
+                                                    <!-- Aqui imprimimos las positions desde la BBDD -->
                                                 </optgroup>
                                             </select>
                                         </div>
@@ -340,7 +336,6 @@
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body text-center">
-                                        <div id="success"></div>
                                         <button id="enviarUser" type="submit" class="btn btn-dark">Create user</button>
                                     </div>
                                 </div>

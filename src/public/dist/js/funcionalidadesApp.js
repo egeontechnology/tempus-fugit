@@ -17,6 +17,7 @@ function send_post(accion, datos) {
 }
 
 send_post("busca_usuarios", "idusuarios=*");
+send_post("busca_position", "idposition=*");
 
 function procesa_datos_recibidos(data, status, accion, datos) {
     // console.log(data)                
@@ -85,7 +86,7 @@ function procesa_datos_recibidos(data, status, accion, datos) {
             break;
         case 'inserta_usuario':
             $('#formUser').trigger("reset");
-            $('#success').html("Success")
+            $('#success').show()
             // window.location.href = 'tablaUsuarios.html';
             break;
         case 'busca_proyectos':
@@ -93,7 +94,9 @@ function procesa_datos_recibidos(data, status, accion, datos) {
             break;
         case 'busca_fichajes':
             $('#fichajesusuario').html(data);
-
+            break;
+        case 'busca_position':
+            $('#inserPositions').html(data);
             break;
         default:
             break;
@@ -108,3 +111,4 @@ $('#formUser').on('submit',function(e){
     // console.log('insert '+ datos);
     send_post('inserta_usuario', datos)
 })
+

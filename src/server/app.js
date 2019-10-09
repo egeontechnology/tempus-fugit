@@ -13,7 +13,6 @@ var con = mysql.createConnection({
 	database : 'tempus_fugit'
 });
 
-
 con.connect(function(err) {
 	if (err) throw err;
 	console.log('connected!');
@@ -146,8 +145,8 @@ app.post('/busca_fichajes', function (req, res) {
 
 app.post('/inserta_usuario', function (req, res) {
 	datos = req.body;
-	console.log(datos);
-	console.log(datos.anivel);
+	// console.log(datos);
+	// console.log(datos.anivel);
 
 	// comprobamos si concede permisos admin o no
 	if(datos.anivel == null){
@@ -155,11 +154,25 @@ app.post('/inserta_usuario', function (req, res) {
 	}
 	
 	sql = "INSERT INTO tusuarios (nombre, apellidos, dni, telefono, email, direccion, ciudad, cp, pais, nivel, fechaNacimiento, position) VALUES ('"+ datos.afname +"', '"+datos.alname+"', '"+datos.adni+"', '"+datos.aphone+"', '"+datos.aemail+"', '"+datos.adirection+"', '"+datos.acity+"', '"+datos.apostcode+"', '"+datos.acountry+"', '"+datos.anivel+"', '"+datos.abirthday+"', '"+datos.aposition+"')"
-	console.log(sql);
+	// console.log(sql);
 	con.query(sql, function (err, result, fields) {
 		if (err) throw err;		
 		//Devuelve la respusta 
 		res.send('¡Usuario añadido con éxito!');
+	});
+});
+
+app.post('/busca_position', function (req, res) {	
+	con.query("SELECT * FROM tposition WHERE 1" , function (err, result, fields) {
+		if (err) throw err;		
+		// Imprimimos las filas con las posiciones
+		var rta2 = "";
+		for(var i=0; i<result.length; i++){				
+			rta2 += '<option value="'+ result[i].idposition+'"> '+ result[i].position +' </option>';
+		}
+		rta2 += '</table>';
+		//Devuelve la respuesta
+		res.send(rta2);
 	});
 });
 
