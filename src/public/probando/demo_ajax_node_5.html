@@ -258,18 +258,12 @@
 			//Evita la ejecución del submit
 			e.preventDefault(); 
 			
-			if($('#enviar').html() == 'Enviar'){
+			
 				datos = $('#form1').serialize();
 				console.log('insert '+ datos);
 				send_post('inserta_alumno', datos)		
 
-			}else{
-				//Perara los datos y los envía con la funcion actualiza_datos
-				datos = $('#form1').serialize();
-				console.log(datos);
-				send_post('actualiza_alumno', datos)		
-			}
-
+			
 		})
 
 		$('#nuevo').click(function(){
@@ -279,15 +273,7 @@
 		})
 		
 		
-		// Si está registrado muestra la página
-		if(sessionStorage.getItem('login') == 'true'){
-			$('#usuario').html('<i class="fas fa-user"></i> Usuario: '+ sessionStorage.getItem('usuario'));
-			
-			send_post('busca_alumnos', 'id=*');		
-		}else{// Si no lo está vuelve a login
-			window.location.href = 'cifrado1.html';
-		}
-
+		
 		
     </script>
 </body>

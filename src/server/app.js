@@ -40,6 +40,7 @@ app.post('/login', function (req, res) {
 	});	
 });
 
+// USUARIOS
 app.post('/busca_usuarios', function (req, res) {
 	// Si la petición es de de todos los registros (id=*) la condición de búsqueda
 	// mySQL es WHERE 1, de lo contrario es WHERE id=número de registro
@@ -66,6 +67,8 @@ app.post('/busca_usuarios', function (req, res) {
 			}
 			//Fin tabla
 			rta += '</table>';
+			// console.log(rta);
+
 		}else{
 			//Si busca la información de un solo alumno
 			//Elimina el password
@@ -138,6 +141,25 @@ app.post('/busca_fichajes', function (req, res) {
 
 		//Devuelve la respuesta
 		res.send(rtafichaje);
+	});
+});
+
+app.post('/inserta_usuario', function (req, res) {
+	datos = req.body;
+	console.log(datos);
+	console.log(datos.anivel);
+
+	// comprobamos si concede permisos admin o no
+	if(datos.anivel == null){
+		datos.anivel = 3
+	}
+	
+	sql = "INSERT INTO tusuarios (nombre, apellidos, dni, telefono, email, direccion, ciudad, cp, pais, nivel, fechaNacimiento, position) VALUES ('"+ datos.afname +"', '"+datos.alname+"', '"+datos.adni+"', '"+datos.aphone+"', '"+datos.aemail+"', '"+datos.adirection+"', '"+datos.acity+"', '"+datos.apostcode+"', '"+datos.acountry+"', '"+datos.anivel+"', '"+datos.abirthday+"', '"+datos.aposition+"')"
+	console.log(sql);
+	con.query(sql, function (err, result, fields) {
+		if (err) throw err;		
+		//Devuelve la respusta 
+		res.send('¡Usuario añadido con éxito!');
 	});
 });
 

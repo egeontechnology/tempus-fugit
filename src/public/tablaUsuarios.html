@@ -255,7 +255,6 @@
                                     <h4 class="modal-title">
                                         <span id="nombre"></span>
                                         <span id="apellidos"></span>
-                                        <span id="edad"></span>
                                     </h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
@@ -271,51 +270,13 @@
                                             <div class="col-12">
                                                 <div class="row">
                                                     <div class="col-md-12 col-lg-6">
-                                                        <!--DATOS USUARIO-->
-                                                        <!-- <form method="post" action="">
-                                                                    <span>
-                                                                        First name: <input type="text" value="" id="fnombre">
-                                                                    </span>
-                                                                    <div>
-                                                                        Last name:
-                                                                        <input type="text" value="" id="fapellido">
-                                                                    </div>
-                                                                    <div>
-                                                                        Date of birth:
-                                                                        <input type="text" value="" id="ffecha">
-                                                                    </div>
-                                                                    <div>
-                                                                        Country:
-                                                                        <input type="text" value="" id="fpais">
-                                                                    </div>
-                                                                    <div>
-                                                                        City:
-                                                                        <input type="text" value="" id="fciudad">
-                                                                    </div>
-                                                                    <div>
-                                                                        Postal Code
-                                                                        <input type="text" value="" id="fcp">
-                                                                    </div>
-                                                                    <div>
-                                                                        Direction
-                                                                        <input type="text" value="" id="fdireccion">
-                                                                    </div>
-                                                                    <div>
-                                                                        Email
-                                                                        <input type="text" value="" id="femail">
-                                                                    </div>
-                                                                    <div>
-                                                                        Phone number
-                                                                        <input type="text" value="" id="ftel">
-                                                                    </div>
-                                                                </form> -->
                                                         <form action="">
                                                             <div class="row">
                                                                 <h3 class="text-center w-100">Personal data</h3>
                                                             </div>
                                                             <table>
                                                                 <tr>
-                                                                    <td>First name</td>
+                                                                    <td>User id</td>
                                                                     <td><input type="text" value="" id="fidusuario"></td>
                                                                 <tr>
                                                                 <tr>
@@ -328,6 +289,10 @@
                                                                 <tr>
                                                                     <td>Date of birth</td>
                                                                     <td><input type="text" value="" id="ffecha"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Edad</td>
+                                                                    <td id="edad"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Country</td>
@@ -504,106 +469,9 @@
              ****************************************/
             $('#zero_config').DataTable();
         </script>
-        <script>
-            var editando = 0;
-            $('#presentProyectos').html("hi");
-            function send_post(accion, datos) {
-                $.ajax({
-                    type: "POST",
-                    url: accion,
-                    data: datos,
-                    success:
-                        function (data, status) {
-                            procesa_datos_recibidos(data, status, accion, datos);
-                        },
-                    error:
-                        function (err) {
-                            console.log("error " + err.status + ' ' + err.statusText);
-                        }
-                });
-            }
-
-            send_post("busca_usuarios", "idusuarios=*");
-
-            function procesa_datos_recibidos(data, status, accion, datos) {
-                // console.log(data)                
-
-                switch (accion) {
-                    case 'busca_usuarios':
-                        if (datos == "idusuarios=*") {
-                            // muestra la tabla en el div "procesado"
-                            $('#tusuarios').html(data);
-                            // al hacer click en una fila aparece un mesaje resumen con todos los datos del alumno
-                            $("#miTabla tbody tr").off('click').on('click', function () {
-                                send_post('busca_usuarios', 'idusuarios=' + this.id);
-                                send_post('busca_proyectos', 'idusuarios=' + this.id);
-                                send_post('busca_fichajes', 'idusuarios=' + this.id);
-                                editando = this.id;
-                            console.log(editando)                               
-
-                                $("#selectDay").off('change').on('change',function(){
-                                    var estaFecha = $("#selectDay").val()
-                                    console.log(estaFecha);
-                                    send_post('busca_fichajes', 'fecha=' + estaFecha + '&idusuarios=' + $('#fidusuario').val());
-                                });
-                                // console.log(data);
-                            });
-                            // aplica formato dataTable	
-                            $('#miTabla').DataTable({
-                                "order": [[2, "asc"]]
-                            });
-                        } else {
-                            // FICHA
-                            usuario = JSON.parse(data);
-                            // FICHA USUARIO
-                            $('#nombre').html(usuario[0].nombre);
-                            $('#apellidos').html(usuario[0].apellidos);
-                            $('#email').html(usuario[0].email);
-                            // Calculo de años para el usuario
-                            var fechaini = new Date(usuario[0].fechaNacimiento);
-                            var fechafin = new Date()
-                            var diasdif = fechafin.getTime() - fechaini.getTime();
-                            var contannos = Math.round(diasdif / (1000 * 60 * 60 * 24 * 365));
-                            $('#edad').html(" - " + contannos);
-                            $('#email').html(usuario[0].email);
-                            // console.log(usuario[0].nombre)
-
-
-                            // FORMULARIO EDITABLE
-                            $('#fidusuario').val(usuario[0].idusuarios);
-                            $('#fnombre').val(usuario[0].nombre);
-                            $('#fapellido').val(usuario[0].apellidos);
-                            $('#ffecha').val(usuario[0].fechaNacimiento);
-                            $('#fpais').val(usuario[0].pais);
-                            $('#fciudad').val(usuario[0].ciudad);
-                            $('#fcp').val(usuario[0].cp);
-                            $('#fdireccion').val(usuario[0].direccion);
-                            $('#femail').val(usuario[0].email);
-                            $('#ftel').val(usuario[0].telefono);
-                            $('#fpuesto').val(usuario[0].position);
-
-                            // Actualizamos fecha actual
-                            // Calculamos la fecha de hoy
-                            var today = new Date();
-                            var dd = String(today.getDate()).padStart(2, '0');
-                            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-                            var yyyy = today.getFullYear();
-                            today = yyyy+ '-' + mm + '-' + dd ;
-                            $("#selectDay").val(today);
-                        }
-                        break;
-                    case 'busca_proyectos':
-                        $('#presentProyectos').html(data);
-                        break;
-                    case 'busca_fichajes':
-                        $('#fichajesusuario').html(data);
-                        
-                        break;
-                    default:
-                        break;
-                }
-            }
-        </script>
+        
+        <!-- CONEXION BASE DE DATOS AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+        <script src="./dist/js/funcionalidadesApp.js"></script>
 
 </body>
 
