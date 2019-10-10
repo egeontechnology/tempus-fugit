@@ -222,7 +222,7 @@ td{
     flex-direction: row;
 }
 
-#boton{
+#botonFichaje{
     background-color: #eb5c5f;
     border: 4px solid rgb(255, 255, 255);
     color: white;
@@ -242,7 +242,7 @@ td{
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-#boton:hover{
+#botonFichaje:hover{
   box-shadow: 5px 10px 3px inset black;
   text-shadow: 6px 6px 3px #000000;
   background-color: rgb(85, 201, 215);
