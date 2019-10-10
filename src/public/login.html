@@ -9,6 +9,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Encriptacion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha3.js"></script>
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/logoa.png">
     <title>Login</title>
@@ -121,6 +122,7 @@
                     if ($("#password").val().length >= 4) {
                         //Envía la petición para comprobar credenciales
                         var dato = 'usuario=' + $('#email').val() + '&password=' + CryptoJS.SHA3($('#password').val(), { outputLength: 512 });
+                        
                         send_post('login', dato);
                     } else {
                         $("#msg").html('password no válido');

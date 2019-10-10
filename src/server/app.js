@@ -152,8 +152,16 @@ app.post('/inserta_usuario', function (req, res) {
 	if(datos.anivel == null){
 		datos.anivel = 3
 	}
+	var CryptoJS  = require("crypto-js");
+
+	var ciphertext = CryptoJS.SHA3("1234", '1111');
 	
-	sql = "INSERT INTO tusuarios (nombre, apellidos, dni, telefono, email, direccion, ciudad, cp, pais, nivel, fechaNacimiento, position) VALUES ('"+ datos.afname +"', '"+datos.alname+"', '"+datos.adni+"', '"+datos.aphone+"', '"+datos.aemail+"', '"+datos.adirection+"', '"+datos.acity+"', '"+datos.apostcode+"', '"+datos.acountry+"', '"+datos.anivel+"', '"+datos.abirthday+"', '"+datos.aposition+"')"
+
+	if(datos.password == null){
+		datos.password = ciphertext
+	}
+	
+	sql = "INSERT INTO tusuarios (nombre, apellidos, dni, telefono, email, password, direccion, ciudad, cp, pais, nivel, fechaNacimiento, position) VALUES ('"+ datos.afname +"', '"+datos.alname+"', '"+datos.adni+"', '"+datos.aphone+"', '"+datos.aemail+"', '"+datos.password+"', '"+datos.adirection+"', '"+datos.acity+"', '"+datos.apostcode+"', '"+datos.acountry+"', '"+datos.anivel+"', '"+datos.abirthday+"', '"+datos.aposition+"')"
 	// console.log(sql);
 	con.query(sql, function (err, result, fields) {
 		if (err) throw err;		
