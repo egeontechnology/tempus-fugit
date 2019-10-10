@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/logoa.png">
+<title>Clock in</title>
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Webiz Digital Agency | Bootstrap Template </title>
   <meta name="description" content="">
   <link rel="canonical" href="https://www.nameagency.com">
   <meta property="og:url" content="https://www.nameagency.com">
@@ -15,8 +16,6 @@
   <script src="./dist/js/reloj.js"></script>
   <script src="./dist/js/controlSemanal.js"></script>
   <script src="./dist/js/attendancyRecording.js"></script>
-  <!-- Check if the user is logged -->
-  <script src="./dist/js/checkIfLogged.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="ico/favicon.ico">
   <link rel="stylesheet" href="./dist/css/fichaje.css">
@@ -47,9 +46,6 @@
           <li class="nav-item">
             <a class="nav-link" href="#" id="projects">Projects</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="logOut">Logout</a>
-          </li>
         </ul>
       </div>
     </nav>
@@ -68,6 +64,7 @@
               <div class="col-12" id="imagenPerfil">
                 <img src="./assets/images/users/Naomi Scott.jpg" alt="">
               </div>
+              <hr style="color: #fff">
               <div class="col-12" id="nombrePerfil">
                 <span id="nombre">Naomi Scott</span>
                 <span id="puesto">CTO</span>
@@ -100,15 +97,15 @@
             <!--    Bloque para manejar los sub-bloques de las semanas -->
             <div class="row" id="sem1">
               <!--    Titulo filas -->
-              <div class="col-12 pb-1">
+              <div class="col-12 pb-1" style="padding-top: 20px">
                 <table class="w-100">
                   <tbody>
                     <tr class="text-center bg-white">
-                      <td class="align-self-center">
-                        <div id="messem1">WEEKS</div>
+                      <td class="align-self-center" id="boxWeeks">
+                        <div id="titleWeeks">WEEKS</div>
                       </td>
-                      <td class="align-self-center">
-                        <div id="horas2">HOURS / WEEK</div>
+                      <td class="align-self-center" id="boxHours">
+                        <div id="titleHours">HOURS / WEEK</div>
                       </td>
                     </tr>
                   </tbody>
@@ -116,7 +113,7 @@
               </div>
 
               <!--    Cada semana ocupa una fila -->
-              <div class="col-12 pb-1">
+              <div class="col-12 pb-1" >
                 <!--    
                         Uso una tabla para poder alinear verticalmente las celdas (class="align-self-center" en las celdas <td>)
                         y que ambos textos queden centrados verticalmente.
@@ -126,16 +123,16 @@
                 <table class="w-100">
                   <tbody>
                     <tr class="text-center bg-white">
-                      <td class="align-self-center">
-                        <div id="lundom1" class="text-center bg-white">4 - 12
+                      <td class="align-self-center" class="celdasCalen">
+                        <div id="lundom1" class="text-center">07 - 13
                           <!-- dia lunes - dia domingo -->
                           <div class="border-top border-secondary"></div>
                           <!--  Simulo el <hr> pero ocupando menos en vert. -->
-                          <div id="messem1">Septiembre</div> <!-- Mes del primer lunes  -->
+                          <div id="messem1">Septiembre - Octubre</div> <!-- Mes del primer lunes  -->
                         </div>
                       </td>
                       <td class="align-self-center">
-                        <div id="horas1">34:54:56</div>
+                        <div id="horas1">39:23:57</div>
                       </td>
                     </tr>
                   </tbody>
@@ -148,16 +145,16 @@
                 <table class="w-100">
                   <tbody>
                     <tr class="text-center bg-white">
-                      <td class="align-self-center">
+                      <td class="align-self-center" class="celdasCalen">
                         <!-- dia lunes - dia domingo  el interior se rellena desde el código (ver plantilla en la semana 1-->
-                        <div id="lundom2" class="text-center bg-white">4 - 12
+                        <div id="lundom2" class="text-center">30 - 06
                           <div class="border-top border-secondary"></div>
                           <!--  Simulo el <hr> pero ocupando menos en vert. -->
                           <div id="messem1">Septiembre</div>
                         </div>
                       </td>
                       <td class="align-self-center">
-                        <div id="horas2">34:54:56</div>
+                        <div id="horas2">48:46:22</div>
                       </td>
                     </tr>
                   </tbody>
@@ -170,16 +167,16 @@
                 <table class="w-100">
                   <tbody>
                     <tr class="text-center bg-white">
-                      <td class="align-self-center">
+                      <td class="align-self-center" class="celdasCalen">
                         <!-- dia lunes - dia domingo  el interior se rellena desde el código (ver plantilla en la semana 1-->
-                        <div id="lundom3" class="text-center bg-white">4 - 12
+                        <div id="lundom3" class="text-center">16 - 22
                           <div class="border-top border-secondary"></div>
                           <!--  Simulo el <hr> pero ocupando menos en vert. -->
                           <div id="messem1">Septiembre</div>
                         </div>
                       </td>
                       <td class="align-self-center">
-                        <div id="horas3">34:54:56</div>
+                        <div id="horas3">41:58:33</div>
                       </td>
                     </tr>
                   </tbody>
@@ -192,16 +189,16 @@
                 <table class="w-100">
                   <tbody>
                     <tr class="text-center bg-white">
-                      <td class="align-self-center">
+                      <td class="align-self-center" class="celdasCalen">
                         <!-- dia lunes - dia domingo  el interior se rellena desde el código (ver plantilla en la semana 1-->
-                        <div id="lundom4" class="text-center bg-white">4 - 12
+                        <div id="lundom4" class="text-center">9 - 15
                           <div class="border-top border-secondary"></div>
                           <!--  Simulo el <hr> pero ocupando menos en vert. -->
                           <div id="messem1">Septiembre</div>
                         </div>
                       </td>
                       <td class="align-self-center">
-                        <div id="horas4">34:54:56</div>
+                        <div id="horas4">32:45:04</div>
                       </td>
                     </tr>
                   </tbody>
@@ -214,16 +211,16 @@
                 <table class="w-100">
                   <tbody>
                     <tr class="text-center bg-white">
-                      <td class="align-self-center">
+                      <td class="align-self-center" class="celdasCalen">
                         <!-- dia lunes - dia domingo  el interior se rellena desde el código (ver plantilla en la semana 1-->
-                        <div id="lundom5" class="text-center bg-white">4 - 12
+                        <div id="lundom5" class="text-center">2 - 8
                           <div class="border-top border-secondary"></div>
                           <!--  Simulo el <hr> pero ocupando menos en vert. -->
                           <div id="messem1">Septiembre</div>
                         </div>
                       </td>
                       <td class="align-self-center">
-                        <div id="horas5">34:54:56</div>
+                        <div id="horas5">44:14:26</div>
                       </td>
                     </tr>
                   </tbody>
@@ -235,17 +232,17 @@
               <div class="col-12 pb-1">
                 <table class="w-100">
                   <tbody>
-                    <tr class="text-center bg-white">
-                      <td class="align-self-center">
+                    <tr class="text-center bg-white" >
+                      <td class="align-self-center" class="celdasCalen">
                         <!-- dia lunes - dia domingo  el interior se rellena desde el código (ver plantilla en la semana 1-->
-                        <div id="lundom6" class="text-center bg-white">4 - 12
+                        <div id="lundom6" class="text-center ">26 - 1
                           <div class="border-top border-secondary"></div>
                           <!--  Simulo el <hr> pero ocupando menos en vert. -->
-                          <div id="messem1">Septiembre</div>
+                          <div id="messem1">  Agosto-Septiembre  </div>
                         </div>
                       </td>
                       <td class="align-self-center">
-                        <div id="horas6">34:54:56</div>
+                        <div id="horas6">27:23:32</div>
                       </td>
                     </tr>
                   </tbody>
@@ -263,22 +260,35 @@
 
                 <!-- Reloj ---------->
                 <div class="col-sm-4" id="relojPadre">
-                  <div>CLOCK</div>
+                  <div class="titleFich">CLOCK</div>
                   <div id="reloj"></div>
                 </div>
 
                 <!-- Boton fichaje -->
-                <div class="col-sm-4" id="wrapper">
+                <!--<div class="col-sm-4" id="wrapper">
                   <a href="#" class="my-super-cool-btn">
                     <div class="buttonContainer">
                       <a id="boton">GO!</a>
                     </div>
                   </a>
-                </div>
+                </div>-->
+
+                <!-- Boton fichaje 
+                <div class="col-sm-4" id="wrapper">
+                    <div class="containerFich">
+                        <div class="btnFich play">
+                          <span class="barFich bar-1-Fich"></span>
+                          <span class="barFich bar-2-Fich"></span>				
+                        </div>
+                    </div>
+                </div>-->
+                <!-- Boton fichaje -->
+
+
 
                 <!-- Cuenta atrás -->
                 <div class="col-sm-4" id="cuentaAtrasPadre">
-                  <div>TIME LEFT</div>
+                  <div class="titleFich">TIME LEFT</div>
                   <div id="cuentaAtras">03:45</div>
                 </div>
               </div>
@@ -289,7 +299,7 @@
                 <div class="content">
                   <div class="contact-profile">
                     <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p style="color: blanchedalmond">Harvey Specter</p>
+                    <p style="color: blanchedalmond">Robert Specter</p>
 
                   </div>
                   <div class="messages">
@@ -333,7 +343,7 @@
                   </div>
                   <div class="message-input">
                     <div class="wrap">
-                      <input type="text" placeholder="Write your message..." />
+                      <input id="inputChat"type="text" placeholder="Write your message..." />
                       <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
                       <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                     </div>
@@ -370,48 +380,46 @@
                       <th>Position</th>
                     </tr>
                     <tr class="profess">
-                      <td class="align-middle"><a href="#"><img src="./assets/images/users/2.jpg" class="imgPers" alt="user"></a></td>
-                      <td class="align-middle">Name1</td>
-                      <td class="align-middle">Position1</td>
+                      <td class="justify-content-style"><a href="#"><img src="./assets/images/users/2.jpg" class="imgPers" alt="user"></a></td>
+                      <td class="align-middle">Angela Jackson</td>
+                      <td class="align-middle">Sales Manager</td>
                     </tr>
                     <tr class="profess">
                       <td class="align-middle"><a href="#"><img src="./assets/images/users/3.jpg" class="imgPers" alt="user"></a></td>
-                      <td class="align-middle">Name2</td>
-                      <td class="align-middle">Position2</td>
+                      <td class="align-middle">Charles Dope</td>
+                      <td class="align-middle">DevOps</td>
                     </tr>
                     <tr class="profess">
                       <td class="align-middle"><a href="#"><img src="./assets/images/users/4.jpg" class="imgPers" alt="user"></a></td>
-                      <td class="align-middle">Name3</td>
-                      <td class="align-middle">Position3</tdclass="alig>
+                      <td class="align-middle">Frank Taylor</td>
+                      <td class="align-middle">Backend</tdclass="alig>
                     </tr>
                     <tr class="profess">
                       <td class="align-middle"><a href="#"><img src="./assets/images/users/6.jpg" class="imgPers" alt="user"></a></td>
-                      <td class="align-middle">Name4</td>
-                      <td class="align-middle">Position4</td>
+                      <td class="align-middle">Sofia Bali</td>
+                      <td class="align-middle">HR Manager</td>
                     </tr>
                     <tr class="profess">
                       <td class="align-middle"><a href="#"><img src="./assets/images/users/5.jpg" class="imgPers" alt="user"></a></td>
-                      <td class="align-middle">Name5</td>
-                      <td class="align-middle">Position5</td>
+                      <td class="align-middle">Thomas Black</td>
+                      <td class="align-middle">Researcher</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <!-- DESCRIPTION -->
-              <div class="descript">   
-                <div>Start Date: 12/10/2018</div>           
-                <div>End Date: 21/02/2019</div>           
+              <div class="descript"> 
+                --  
+                <div>Start Date: <span id="fechProy">12/10/2018</span></div>           
+                <div>End Date: <span id="fechProy">21/02/2019</sp></div>  
+                --         
                 <div id="titleDesc">
                   <spam>Description</spam>
                 </div>
                 <div>
-                  <spam class="descrip">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure facilis odio id unde. Inventore
-                    facilis, molestias pariatur suscipit ratione maiores minus consectetur. Tenetur itaque soluta nostrum repellat
-                    cumque molestias laboriosam!</spam>
+                  <spam class="descrip">Cripto is a blockchain-powered web browser. In September 2018, Cripto exceeded 10 million downloads from the Google Play Store. Currently, four million people use Brave each month and it has 26,000 content publishers.
                 </div>
-                <div id="moreInfo">
-                  more infor +
-                </div>
+                <div id="moreInfo">more info +</div>
               </div>
             </div>
           </div>
@@ -426,6 +434,7 @@
     menu();     
     
   </script>
+
 </body>
 
 </html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--antiaEdit-->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logoa.png">
+    <title>Register</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="dist/css/styleregister.css">
+    <style>
+        #name, #surname, #company{
+            display: inline;
+        }
+    </style>
+    <script>
+
+// USAR ESTO PARA EL REGISTRO DEL FORM
+
+function test(email, password){
+
+if(email.value == "admin@gmail.com"){
+    document.getElementById("mailWrong").innerHTML = "";
+}else{
+    document.getElementById("mailWrong").innerHTML = "";
+
+}
+
+if(password.value.length == 0){
+    document.getElementById("passWrong").innerHTML = "Forgot your password?";
+}else if(password.value != "Admin1234"){
+    document.getElementById("passWrong").innerHTML = "";
+}else{
+    document.getElementById("passWrong").innerHTML = "";
+}
+
+}   
+
+// function emailValidator(string){
+//     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+//     if(email.value.match(mailformat) && email.value.length >= 0){
+//         document.getElementById("mailWrong").innerHTML = "";
+//         return string;        
+//     }else{
+//         document.getElementById("mailWrong").innerHTML = "Introduce un email";
+//         return string;        
+//     }
+// }   
+
+
+    </script>
+</head>
+<body>
+    <section class="wrapper" wrapper>
+
+        <!---------------------------------------------------- LOGO ----------------------->
+        <div class="logo"> <img src="assets/images/logoGw.png" alt="logo" width="150px"></div>
+
+        <!---------------------------------------------------- TITLE ---------------------->
+        <div class="title" style="font-weight:bold">Register</div>
+
+        <!---------------------------------------------------- MAIN ----------------------->
+        <main class="main">
+                <img src="assets/images/unlock-400px.png" alt="Hello" width=200px>
+                <br><br>
+                <!--<ul id="hello" style="font-weight: bold">
+                    <li>Hello</li>
+                    <li>again!</li>
+                </ul>-->
+                
+                
+                <ul id="direction">
+                    <li>Madrid / Spain</li>
+                    <li>ad. Marqués de Ahumada 7</li>
+                    <li>28028</li>
+                    <li id="mail">m: whatimefor@wtf.com</li>
+                    <li id="phone">p: +34 999 888 777</li>
+                    <li id="socialMedia">
+                        <a href=""><img src="assets/images/facebook.png" alt="Twitter" class="socialMediaIcon"></a>  |
+                        <a href=""><img src="assets/images/instagram.png" alt="Twitter" class="socialMediaIcon"></a>  |
+                        <a href=""><img src="assets/images/twitter.png" alt="Twitter" class="socialMediaIcon"></a>  |
+                        <a href=""><img src="assets/images/linkedin.png" alt="Twitter" class="socialMediaIcon"></a>
+                    </li>
+                </ul>
+
+        </main>
+
+        <!---------------------------------------------------- REGISTER FORM ----------------->
+        
+        <form action="../index.html" class="form" >  
+        <h4 id="companyName"> COMPANY</h4>           
+            <div class="input-fields">
+            <!--company name-->
+            <br>
+            <div class="list-inline"><input class="list-inline-item"
+                type="text" 
+                id="name" 
+                placeholder="Company Name"
+                required=""
+                autocomplete="off">
+            </input>
+            <!--cif-->
+            <input class="list-inline-item"
+                type="text" 
+                id="CIF" 
+                placeholder="CIF"
+                required=""
+                autocomplete="off">
+            </input></div>
+            <!--phone company-->
+            <div class="list-inline">
+            <input class="list-inline"
+                type="text" 
+                id="companyPhone" 
+                placeholder="Phone"
+                required=""
+                autocomplete="off">
+            </input> 
+            <!--address-->
+            <input class="list-inline"
+                type="text" 
+                id="address" 
+                placeholder="Address"
+                required=""
+                autocomplete="off">
+            </input></div> 
+            <!--city-->
+            <div class="list-inline">
+            <input class="list-inline-item"
+                type="text" 
+                id="city" 
+                placeholder="City"
+                required=""
+                autocomplete="off">
+            </input>
+            <!--Country-->
+                <input class="list-inline-item"
+                type="text" 
+                id="countryCompany" 
+                placeholder="Country"
+                required=""
+                autocomplete="off">
+            </input></div>
+            
+        </form>
+        <br>
+
+        
+        <form action="../index.html" class="form" >             
+            <h4 id= "adminTitle"> ADMINISTRATOR</h4>
+            <div class="input-fields">
+            <!--name-->
+            <br>
+            <div class="list-inline">
+                <input class="list-inline-item"
+                type="text" 
+                id="name" 
+                placeholder="Name"
+                title="You must use a valid name" 
+                required=""
+                autocomplete="off">
+            </input>
+            <!--surname-->
+            <input class="list-inline-item"
+                type="text" 
+                id="surname" 
+                placeholder="Surname"
+                title="You must use a valid name" 
+                required=""
+                autocomplete="off">
+            </input></div>
+            <!--company-->
+            <div class="list-inline">
+                <input class="list-inline-item"
+                type="text" 
+                id="company" 
+                placeholder="Company"
+                title="You must use a valid name" 
+                required=""
+                autocomplete="off">
+            </input> 
+            <!--phone-->
+            <input class="list-inline-item" 
+                type="text" 
+                id="adminphone" 
+                placeholder="Phone"
+                required=""
+                autocomplete="off">
+            </input></div>                                  
+                <!-------------------------------------------- EMAIL ---------------------->
+            <br>
+            <div class="list-inline">
+            <input class="list-inline-item"
+                type="email" 
+                id="email" 
+                placeholder="Email"
+                title="Debe usarse un Email valido" 
+                required=""
+                onfocus="emailValidator(this.value)"
+                pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                autocomplete="off">
+            </input>
+            <span id="mailWrong"></span>           
+            <!------------------------------------------- CONTRASEÑA ------------------>
+            <input class="list-inline-item"
+            type="password"
+            id="password" 
+            placeholder="Password" 
+            title="Debe contener 8 carácteres, al menos una letra mayuscula y al menos un numero." 
+            required=""
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            autocomplete="off"> 
+        </input>
+        <span id="passWrong"></span> </div>
+                <!-------------------------------------------- BOTON --------------------->
+                
+                <div style="text-align: right"><input class="float-right" type="submit" id="butReg" name="button" value="Register" onclick="test(email, password, name)">           
+                
+                <!---------------------------------- CONTRASEÑA OLVIDAD Y CREAR CUENTA --->            
+                <div class="redirection">
+                <a href="forgotPassword.html">Forgot Password?</a>|<a href="login.html">Back to Log in</a>
+                </div>
+            </div>       
+        </form>
+    </section>
+</body>
+</html>

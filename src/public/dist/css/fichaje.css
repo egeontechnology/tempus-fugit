@@ -29,10 +29,13 @@ body{
 .navbar-nav .nav-item .nav-link{
   color: #fff !important;
   font-weight: bold; 
+  text-align: right;
+  margin-right: 35px;
 }
 .navbar-nav .nav-item .nav-link:hover{
-  color: black !important;
-  background-color: white !important;
+  color: #eb5c5f !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  
 }
 .fa-bars{
   color: #fff !important; 
@@ -52,14 +55,17 @@ body{
 /* ----------------------------- PERFIL Y CALENDARIO ------------------- */
 /* ---------------------------------------------------------------------- */
 
+span{
+  font-family: 'Montserrat';
+}
 #imagenPerfil img{
-  max-width: 100px;
+  max-width: 110px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
-  border:4px solid rgb(255, 255, 255);
+  border:1px solid rgb(255, 255, 255);
 }
 #imagenPerfil{
   margin: auto;
@@ -67,7 +73,8 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 40px 0 10px 0;
+  margin: 80px 0 10px 0;
+
 }
 
 #nombrePerfil{
@@ -77,15 +84,18 @@ body{
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  margin: 0 0 10px 0;
+  margin: 10px 0 10px 0;
 }
 
 #nombrePerfil #nombre{
   font-size: 20px;
+  letter-spacing: 1px;
   /* text-decoration: underline; */
 }
 #nombrePerfil #puesto{
-  font-size: 12px;
+  font-size: 14px;
+  color: #eb5c5f;
+  letter-spacing: 1.5px;
 }
 
 td{
@@ -114,17 +124,27 @@ td{
 #duPerfil{
   color: rgb(0, 0, 0);
   display: none;
+  padding-left: 30px;
 }
 
 #duPerfil .row  {
   min-width: 230px;
-  max-width: 600px;
+  max-width: 500px;
   margin: auto;
 }
 
 #duPerfil div{
   align-content: center;
   padding: 0;
+}
+#blCalendario{
+  margin-top: 30px;
+}
+#boxWeeks, #boxHours{
+  background-color: #eb5c5f;
+  border: 0px;
+  color: #fff;
+  font-
 }
 
 /* ---------------------------------------------------------------------- */
@@ -144,11 +164,29 @@ td{
   height: 80vh;
 }
 
+.titleFich{
+  font-family: 'Montserrat';
+  font-size: 20px;
+}
+
 #reloj {
     padding-top: 10px;
     margin: 0 0 35px 0;
     height: 0;
+    color: #eb5c5f;
+    font-size: 20px;
+    font-weight: 700
 }
+.align-self-center{
+  background-color: #000000;
+  color: #fff;
+  border-top: solid 0.15px white;
+  
+}
+#messem1{
+  background-color: #000000;
+}
+
 
 #relojPadre {
     display: flex;
@@ -161,7 +199,11 @@ td{
     /* height: 100px; */
     vertical-align: middle;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 10px;    
+    color: #eb5c5f;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 3px;
 }
 
 #cuentaAtrasPadre {
@@ -181,7 +223,7 @@ td{
 }
 
 #boton{
-    background-color: rgb(219, 47, 16);
+    background-color: #eb5c5f;
     border: 4px solid rgb(255, 255, 255);
     color: white;
     padding: 40px;
@@ -203,7 +245,7 @@ td{
 #boton:hover{
   box-shadow: 5px 10px 3px inset black;
   text-shadow: 6px 6px 3px #000000;
-  background-color: rgb(37, 105, 37);
+  background-color: rgb(85, 201, 215);
 }
 
 .buttonContainer{
@@ -211,11 +253,34 @@ td{
   justify-content: center;
 }
 
+#messem1{
+  font-family: 'Montserrat';
+  font-size: 15px;
+  font-weight: 300;
+}
+#horas1, #horas2, #horas3, #horas4, #horas5, #horas6, #horas7{
+  font-family: 'Montserrat';
+  font-size: 15px;
+}
+
+#titleWeeks, #titleHours{
+  font-weight: bold;
+  font-family: 'Montserrat';
+}
+#mes, #anno{
+  font-family: 'Montserrat';
+}
+
+
 @media screen and (max-width: 735px) {
   #sistemaFichaje{
     height: 80vh;
   }
 }
+#inputChat{
+  font-size: 18px;
+}
+
 /* ---------------------------------------------------------------------- */
 /* -------------------------------PROJECTS------------------------------- */
 /* ---------------------------------------------------------------------- */
@@ -256,7 +321,7 @@ a img{
 }
 
 .table td, .table th{
-  padding: 1px 0%;
+  padding: 3px 0%;
 }
 
 #tablaProjects td{
@@ -268,17 +333,23 @@ a img{
   font-size: 17px;
   padding: 10px 0;
 }
-
+#fechProy{
+  font-weight: 500;
+  color: #eb5c5f;
+}
 #duProjects{
   display: none;
 }
 
 #moreInfo{
-  color: brown;
-  text-align: center;
+  color: #eb5c5f;
+  text-align: left;
   text-decoration-line: underline ;
   -moz-text-decoration-line: underline ;
+  
 }
+
+
 /* ---------------------------------------------------------------------- */
 /* ------------------------------CHAT------------------------------------ */
 /* ---------------------------------------------------------------------- */
@@ -293,10 +364,10 @@ a img{
   background: #282828;
   margin:auto;
 
-  font-family: "proxima-nova", "Source Sans Pro", sans-serif;
-  font-size: 1em;
+  font-family: 'Montserrat', "Source Sans Pro", sans-serif;
+  font-size: 0.7em;
   letter-spacing: 0.1px;
-  color: #32465a;
+  color: #000000;
   text-rendering: optimizeLegibility;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   -webkit-font-smoothing: antialiased;
@@ -365,7 +436,7 @@ ul{
 }
 
 #frame .content .contact-profile .social-media i:hover {
-  color: #435f7a;
+  color: #eb5c5f;
 }
 
 #frame .content .messages {
@@ -410,7 +481,7 @@ ul{
 }
 
 #frame .content .messages ul li.sent p {
-  background: #435f7a;
+  background: #eb5c5f;
   color: #f5f5f5;
 }
 
@@ -456,14 +527,14 @@ ul{
 }
 
 #frame .content .message-input .wrap input {
-  font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+  font-family: 'Montserrat', "Source Sans Pro", sans-serif;
   float: left;
   border: none;
   width: calc(100% - 50px);
   height: 53px;
   padding: 11px 32px 10px 8px;
-  font-size: 0.8em;
-  color: #32465a;
+  font-size: 1em;
+  color: #eb5c5f;
 }
 
 @media screen and (max-width: 735px) {
@@ -525,6 +596,7 @@ ul{
 #duChat{
   display: none;
   justify-content: center;
+  padding-top: 40px;
 }
 
 @media screen and (max-width: 735px) {
