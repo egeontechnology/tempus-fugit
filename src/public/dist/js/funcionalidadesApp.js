@@ -18,9 +18,11 @@ function send_post(accion, datos) {
 
 send_post("busca_usuarios", "idusuarios=*");
 send_post("busca_position", "idposition=*");
+send_post("busca_fichajesUser", "idusuarios="+ parseInt(sessionStorage.getItem("idusuario")));
+
 
 function procesa_datos_recibidos(data, status, accion, datos) {
-    // console.log(data)                
+    // console.log(data);                
 
     switch (accion) {
         case 'busca_usuarios':
@@ -33,14 +35,11 @@ function procesa_datos_recibidos(data, status, accion, datos) {
                     send_post('busca_proyectos', 'idusuarios=' + this.id);
                     send_post('busca_fichajes', 'idusuarios=' + this.id);
                     editando = this.id;
-                    console.log(editando)
 
                     $("#selectDay").off('change').on('change', function () {
                         var estaFecha = $("#selectDay").val()
-                        // console.log(estaFecha);
                         send_post('busca_fichajes', 'fecha=' + estaFecha + '&idusuarios=' + $('#fidusuario').val());
                     });
-                    // console.log(data);
                 });
                 // aplica formato dataTable	
                 // $('#miTabla').DataTable({
@@ -87,7 +86,6 @@ function procesa_datos_recibidos(data, status, accion, datos) {
         case 'inserta_usuario':
             $('#formUser').trigger("reset");
             $('#success').show()
-            // window.location.href = 'tablaUsuarios.html';
             break;
         case 'busca_proyectos':
             $('#presentProyectos').html(data);
@@ -95,20 +93,47 @@ function procesa_datos_recibidos(data, status, accion, datos) {
         case 'busca_fichajes':
             $('#fichajesusuario').html(data);
             break;
+        case 'busca_fichajesUser':
+            // cambiamos el boton en funcion del tipo del ultimo fichaje
+            if(data != 0){
+                $('#botonFichaje').html("Out");
+                $('#botonFichaje').css("background-color", "#eb5c5f");
+            }else{
+                $('#botonFichaje').html("Go!");
+                $('#botonFichaje').css("background-color", "black");
+            }
+            $('#tipoUser').html(data);
+            break;
         case 'busca_position':
             $('#inserPositions').html(data);
+            break;
+        case 'insertar_fichaje':            
+        send_post("busca_fichajesUser", "idusuarios="+ parseInt(sessionStorage.getItem("idusuario")));
             break;
         default:
             break;
     }
 }
 
+// FICHAJE!!!!
+
+
+$("#botonFichaje").off('click').on('click', function () {
+    var tipo = $('#tipoUser').html();
+    var user = parseInt(sessionStorage.getItem("idusuario"));
+
+    var obj ={
+        tipo: tipo,
+        user: user
+    }
+    send_post('insertar_fichaje', obj);
+});
+
 // Al hacer Click en Crear usuario ejecutamos inserta_alumnos
 $('#formUser').on('submit',function(e){
     //Evita la ejecución del submit
     e.preventDefault();
     datos = $('#formUser').serialize();
-    // console.log('insert '+ datos);
-    send_post('inserta_usuario', datos)
+    send_post('inserta_usuario', datos);
 })
 

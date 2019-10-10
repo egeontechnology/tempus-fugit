@@ -242,11 +242,8 @@ td{
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-#botonFichaje:hover{
-  box-shadow: 5px 10px 3px inset black;
-  text-shadow: 6px 6px 3px #000000;
-  background-color: rgb(85, 201, 215);
-}
+
+button:focus {outline:0;}
 
 .buttonContainer{
   display: flex;

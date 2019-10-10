@@ -156,6 +156,7 @@
                             sessionStorage.setItem('usuario', usuario[0].nombre + ' ' + usuario[0].apellidos);
                             sessionStorage.setItem('login', 'true');
                             sessionStorage.setItem('privilegio', usuario[0].nivel);
+                            sessionStorage.setItem('idusuario', usuario[0].idusuarios);
 
                             if(sessionStorage.getItem('privilegio') == 3){
                                 window.location.href = './fichaje.html';

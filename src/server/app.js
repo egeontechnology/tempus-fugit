@@ -18,6 +18,7 @@ con.connect(function(err) {
 	console.log('connected!');
 });
 
+// LOGIN
 app.post('/login', function (req, res) {
 	con.query("SELECT * FROM tusuarios WHERE email= '"+req.body.usuario+"'", function (err, result, fields) {
 		if (err) throw err;	
@@ -110,16 +111,16 @@ app.post('/busca_fichajes', function (req, res) {
 	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 	var yyyy = today.getFullYear();
 	today = yyyy+ '-' + mm + '-' + dd ;
-	// console.log(today + "<<----");
-	
 	
 	// Variables que necesitamos para la sentencia SQL
 	condicion = req.body.idusuarios; //id usuario seleccionado
 	if ( req.body.fecha!=null) {
-		condicion2 = req.body.fecha;
+		condicion2 = req.body.fecha; // fecha seleccionade
 	} else{
-		condicion2 = today;
+		condicion2 = today;			 //fecha seleccionada
 	}
+
+	// console.log(req.body)
 
 	sql="SELECT * FROM tfichajes WHERE fecha='" + condicion2 + "' and usuario='" + condicion+"'";
 
@@ -127,9 +128,9 @@ app.post('/busca_fichajes', function (req, res) {
 	
 	con.query(sql, function (err, result, fields) {
 		if (err) throw err;
-		//Si busca todos los alumnos
 
-		// console.log(result)
+		// datosF = JSON.stringify(result);
+		
 		var rtafichaje = '<table id="tablaFichajes">';
 		for(var i=0; i<result.length; i++){				
 			rtafichaje += '<tr id="'+ result[i].idfichajes+'"><td>'+ (result[i].tipo == 0 ? "IN" : "OUT") + '</td><td>' + result[i].hora + '</td></tr>';
@@ -182,6 +183,58 @@ app.post('/busca_position', function (req, res) {
 		//Devuelve la respuesta
 		res.send(rta2);
 	});
+});
+
+app.post('/busca_fichajesUser', function (req, res) {	
+	condicion = req.body.idusuarios; //id usuario seleccionado
+	sql="SELECT * FROM tfichajes WHERE usuario='" + condicion+"'";
+	
+	con.query(sql, function (err, result, fields) {
+		if (err) throw err;
+		var ultimoFichaje = result.length -1;
+		var result = result[ultimoFichaje].tipo;
+		
+		datosF = JSON.stringify(result);
+		//Devuelve el tipo del ultimo fichaje
+		res.send(datosF);
+	});
+});
+
+app.post('/insertar_fichaje', function (req, res) {
+	
+	// hora
+	var d = new Date();
+    var r = ('0'+d.getHours()).slice(-2) + ":" + ('0'+d.getMinutes()).slice(-2) + ":" + ('0'+ d.getSeconds()).slice(-2);
+	// console.log(r);
+
+	// fecha
+	var today = new Date();
+	var dd = String(today.getDate()).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyy = today.getFullYear();
+	fechaa = yyyy + '-' + mm + '-' + dd;
+	// console.log(today);
+
+	var tipo = req.body.tipo;
+	var user = req.body.user;
+
+	if(tipo != 0){
+		tipoUser = 0;
+	}else{
+		tipoUser = 1;
+	}
+	// console.log(req.body)
+
+	sql = "INSERT INTO tfichajes (usuario, tipo, fecha, hora) VALUES ('"+ user +"', '"+tipoUser+"', '"+fechaa+"', '"+r+"')";
+	console.log(sql);
+
+	con.query(sql, function (err, result, fields) {
+		if (err) throw err;		
+		//Devuelve la respusta 
+		res.send('¡Usuario añadido con éxito!');
+	});
+
+
 });
 
 app.use("/", express.static("./../public"));

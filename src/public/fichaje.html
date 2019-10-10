@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/logoa.png">
-<title>Clock in</title>
-
+  
 <head>
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logoa.png">
+  <title>Clock in</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,6 +45,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" id="projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="logOut">Logout</a>
           </li>
         </ul>
       </div>
@@ -111,7 +114,6 @@
                   </tbody>
                 </table>
               </div>
-
               <!--    Cada semana ocupa una fila -->
               <div class="col-12 pb-1" >
                 <!--    
@@ -265,18 +267,14 @@
                 </div>
 
                 <!-- Boton fichaje -->
-                <div class="col-sm-4" id="wrapper">
-                  <a href="#" class="my-super-cool-btn">
-                    <div class="buttonContainer">
-                      <a id="botonFichaje">GO!</a>
-                    </div>
-                  </a>
+                <div class="col-sm-4" id="wrapper">                   
+                      <button id="botonFichaje"></button>
                 </div>
 
                 <!-- Cuenta atrás -->
                 <div class="col-sm-4" id="cuentaAtrasPadre">
                   <div class="titleFich">TIME LEFT</div>
-                  <div id="cuentaAtras">03:45</div>
+                  <div id="cuentaAtras">08:00</div>
                 </div>
               </div>
             </div>
@@ -338,6 +336,9 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div id="tipoUser" style="display: none;">
+            <!-- aqui almaceno el tipo del fichaje (ocultado) -->
           </div>
         </div>
 
@@ -419,7 +420,8 @@
     document.getElementById("anno").innerHTML = genera_anno();    
     menu();         
   </script>
-  
+  <script src="./dist/js/checkIfLogged.js"></script>
+  <script src="assets/libs/jquery/dist/jquery.min.js"></script>
   <!-- CONEXION BASE DE DATOS AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
   <script src="./dist/js/funcionalidadesApp.js"></script>
 
