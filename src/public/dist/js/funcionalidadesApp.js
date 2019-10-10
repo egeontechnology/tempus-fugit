@@ -95,7 +95,7 @@ function procesa_datos_recibidos(data, status, accion, datos) {
             break;
         case 'busca_fichajesUser':
             // cambiamos el boton en funcion del tipo del ultimo fichaje
-            if(data != 0){
+            if(data != 1){
                 $('#botonFichaje').html("Out");
                 $('#botonFichaje').css("background-color", "#eb5c5f");
             }else{

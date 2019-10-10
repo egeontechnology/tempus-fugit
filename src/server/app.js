@@ -58,7 +58,7 @@ app.post('/busca_usuarios', function (req, res) {
 			//Inicio tabla
 			rta = '<table id="miTabla" class="table table-hover table-condensed">';
 			//Cabecera tabla
-			rta += '<thead><tr><th>Nombre</th><th>Position</th><th>Phone</th><th>Email</th><th>Weekly hours</th></tr></thead>';
+			rta += '<thead><tr><th>Name</th><th>Position</th><th>Phone</th><th>Email</th><th>Weekly hours</th></tr></thead>';
 
 			//Filas tabla
 			for(var i=0; i<result.length; i++){				
@@ -236,6 +236,10 @@ app.post('/insertar_fichaje', function (req, res) {
 
 
 });
+
+// PROYECTOS
+
+
 
 app.use("/", express.static("./../public"));
 

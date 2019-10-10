@@ -22,6 +22,153 @@
 </head>
 
 <body>
+    <div class="container">
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <span id="nombre"></span>
+                            <span id="apellidos"></span>
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body" id="modal">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="assets/images/users/2.jpg" alt="Tiger"
+                                        style="width: 120px; border-radius: 50%">
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-6">
+                                            <form action="">
+                                                <div class="row">
+                                                    <h3 class="text-center w-100">Personal data</h3>
+                                                </div>
+                                                <table>
+                                                    <tr>
+                                                        <td>User id</td>
+                                                        <td><input type="text" value="" id="fidusuario"></td>
+                                                    <tr>
+                                                    <tr>
+                                                        <td>First name</td>
+                                                        <td><input type="text" value="" id="fnombre"></td>
+                                                    <tr>
+                                                        <td>Last name</td>
+                                                        <td><input type="text" value="" id="fapellido"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Date of birth</td>
+                                                        <td><input type="text" value="" id="ffecha"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Edad</td>
+                                                        <td id="edad"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Country</td>
+                                                        <td><input type="text" value="" id="fpais"></td>
+                                                    <tr>
+                                                        <td>City</td>
+                                                        <td><input type="text" value="" id="fciudad"></td>
+                                                    <tr>
+                                                        <td>Postal Code</td>
+                                                        <td><input type="text" value="" id="fcp"></td>
+                                                    <tr>
+                                                    <tr>
+                                                        <td>Direction</td>
+                                                        <td><input type="text" value="" id="fdireccion">
+                                                        </td>
+                                                    <tr>
+                                                    <tr>
+                                                        <td>Email</td>
+                                                        <td><input type="text" value="" id="femail"></td>
+                                                    <tr>
+                                                        <td>Phone number</td>
+                                                        <td><input type="text" value="" id="ftel"></td>
+                                                    <tr>
+                                                </table>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-12 col-lg-6">
+                                            <!-- FICHAJES USUARIO -->
+                                            <div>
+                                                <div class="row">
+                                                    <h3 class="text-center w-100">Employee info</h3>
+                                                </div>
+                                                <div>
+                                                    <table>
+                                                        <tr>
+                                                            <td>Position </td>
+                                                            <td><input type="text" value="" id="fpuesto"></td>
+                                                        <tr>
+                                                    </table>
+                                                </div> 
+                                            </div>                                                       
+                                            <div>
+                                                <div class="row">
+                                                    <h3 class="text-center w-100">Projects list</h3>
+                                                </div>
+                                                <div id="presentProyectos">
+                                                    <!-- Aqui pintamos la tabla de PROYECTOS -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <h3 class="text-center w-100">Work day</h3>
+                                    </div>
+                                    <div class="card">
+                                        <input id="selectDay" type="date" class="w-75 mx-auto text-center mt-3">
+                                    </div>
+                                    <div class="col-12 w-75 mx-auto" id="fichajesusuario">
+                                        <!-- Aqui pintamos la tabla de fichajes del dia -->
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="row" id="personalData">
+                                            <div class="col-md-12 col-lg-4">
+                                                <div class="card">
+                                                    <div class="card-body">
+
+                                                        <div class="mt-3">
+                                                            <button type="button"
+                                                                class="btn btn-dark w-100 ">Edit
+                                                                user</button>
+                                                            <button type="button"
+                                                                class="btn btn-danger w-100 mt-2">Delete
+                                                                user</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
   <!-- Navbar Menu  ---->
   <section id="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -64,8 +211,9 @@
           <!-- FICHA PERFIL USUARIO -->
           <div class="container-fluid">
             <div class="row">
-              <div class="col-12" id="imagenPerfil">
-                <img src="./assets/images/users/Naomi Scott.jpg" alt="">
+              
+              <div class="col-12 table " id="imagenPerfil">
+                <img src="./assets/images/users/Naomi Scott.jpg"  data-toggle="modal" data-target="#myModal">
               </div>
               <hr style="color: #fff">
               <div class="col-12" id="nombrePerfil">
