@@ -171,6 +171,31 @@ app.post('/inserta_usuario', function (req, res) {
 	});
 });
 
+app.post('/eliminar_usuario', function (req, res) {	
+	var eliminarUser = req.body.idusuarios;
+	var sql = "DELETE FROM tusuarios WHERE "+ "idusuarios="+eliminarUser;
+	
+	con.query(sql, function (err, result, fields) {
+		if (err) throw err;		
+		//Devuelve la respusta 
+		res.send('¡Usuario añadido con éxito!');
+	});
+});
+
+app.post('/editar_usuario', function (req, res) {
+	var datos = req.body;
+
+	var sql = "UPDATE tusuarios SET nombre='"+datos.nombre+"',apellidos='"+datos.apellidos+"',telefono='"+datos.telefono+"',email='"+datos.email+"',direccion='"+datos.direccion+"',ciudad='"+datos.ciudad+"',cp='"+datos.cp+"',pais='"+datos.pais+"',fechaNacimiento='"+datos.fechaNacimiento+"' WHERE (idusuarios='"+datos.idusuarios+"')"
+	// console.log(sql);
+	con.query(sql, function (err, result, fields) {
+		if (err) throw err;
+	
+		//Devuelve la respusta 
+		rta2 = JSON.stringify(result);
+		res.send(rta2);
+	});
+});
+
 app.post('/busca_position', function (req, res) {	
 	con.query("SELECT * FROM tposition WHERE 1" , function (err, result, fields) {
 		if (err) throw err;		
@@ -226,7 +251,7 @@ app.post('/insertar_fichaje', function (req, res) {
 	// console.log(req.body)
 
 	sql = "INSERT INTO tfichajes (usuario, tipo, fecha, hora) VALUES ('"+ user +"', '"+tipoUser+"', '"+fechaa+"', '"+r+"')";
-	console.log(sql);
+	// console.log(sql);
 
 	con.query(sql, function (err, result, fields) {
 		if (err) throw err;		

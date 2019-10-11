@@ -87,6 +87,41 @@ function procesa_datos_recibidos(data, status, accion, datos) {
             $('#formUser').trigger("reset");
             $('#success').show()
             break;
+        case 'eliminar_usuario':
+            send_post("busca_usuarios", "idusuarios=*");
+            window.location.href = 'tablaUsuarios.html';
+            break;
+            case 'editar_usuario':
+            send_post('busca_usuarios', 'idusuarios=*');
+            console.log(data);
+            // FICHA
+            usuario = JSON.parse(data);
+            console.log(usuario[0]);
+            // FICHA USUARIO
+            $('#nombre').html(usuario[0].nombre);
+            $('#apellidos').html(usuario[0].apellidos);
+            $('#email').html(usuario[0].email);
+            // Calculo de años para el usuario
+            var fechaini = new Date(usuario[0].fechaNacimiento);
+            var fechafin = new Date()
+            var diasdif = fechafin.getTime() - fechaini.getTime();
+            var contannos = Math.round(diasdif / (1000 * 60 * 60 * 24 * 365));
+            
+            // FORMULARIO EDITABLE
+            $('#edad').html(contannos);
+            $('#email').val(usuario[0].email);
+            $('#fidusuario').val(usuario[0].idusuarios);
+            $('#fnombre').val(usuario[0].nombre);
+            $('#fapellido').val(usuario[0].apellidos);
+            $('#ffecha').val(usuario[0].fechaNacimiento);
+            $('#fpais').val(usuario[0].pais);
+            $('#fciudad').val(usuario[0].ciudad);
+            $('#fcp').val(usuario[0].cp);
+            $('#fdireccion').val(usuario[0].direccion);
+            $('#femail').val(usuario[0].email);
+            $('#ftel').val(usuario[0].telefono);
+            $('#fpuesto').val(usuario[0].position);
+            break;
         case 'busca_proyectos':
             $('#presentProyectos').html(data);
             break;
@@ -116,8 +151,6 @@ function procesa_datos_recibidos(data, status, accion, datos) {
 }
 
 // FICHAJE!!!!
-
-
 $("#botonFichaje").off('click').on('click', function () {
     var tipo = $('#tipoUser').html();
     var user = parseInt(sessionStorage.getItem("idusuario"));
@@ -129,7 +162,7 @@ $("#botonFichaje").off('click').on('click', function () {
     send_post('insertar_fichaje', obj);
 });
 
-// Al hacer Click en Crear usuario ejecutamos inserta_alumnos
+// INSERTAR USER
 $('#formUser').on('submit',function(e){
     //Evita la ejecución del submit
     e.preventDefault();
@@ -137,3 +170,44 @@ $('#formUser').on('submit',function(e){
     send_post('inserta_usuario', datos);
 })
 
+// DELETE USER
+$("#eliminarUser").off('click').on('click', function () {
+    var iduser = $('#fidusuario').val();
+
+    var objEliminar ={
+        idusuarios: iduser
+    }
+    send_post('eliminar_usuario', objEliminar);
+});
+
+// EDIT USER
+$("#editarUser").off('click').on('click', function () {
+
+    var id = $('#fidusuario').val();
+    var nombre = $('#fnombre').val();
+    var apellido=$('#fapellido').val();
+    var fnacimiento=$('#ffecha').val();
+    var pais=$('#fpais').val();
+    var ciudad=$('#fciudad').val();
+    var cp=$('#fcp').val();
+    var dir=$('#fdireccion').val();
+    var email=$('#femail').val();
+    var tel=$('#ftel').val();
+    var position=$('#fpuesto').val();
+
+    var objEdit ={
+        idusuarios: id,
+        nombre: nombre,
+        apellidos:apellido,
+        telefono:tel,
+        email:email,
+        direccion:dir,
+        ciudad:ciudad,
+        cp:cp,
+        pais:pais,
+        fechaNacimiento:fnacimiento,
+        position:position
+    }
+
+    send_post('editar_usuario', objEdit);
+});
