@@ -55,6 +55,11 @@ grid-template-areas: "none logo title title"
     /* background-color: #8cffa0; */
 }
 
+.form a{
+    color: white;
+    /* background-color: #8cffa0; */
+}
+
 /* ORDENAMOS LA INFORMACION DE LA EMPRESA */
 #hello{font-size: 40px;}
 #direction{margin-top: 35px}
